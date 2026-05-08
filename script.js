@@ -4,159 +4,364 @@ const visualDescription = document.querySelector("#visual-description");
 const visualCaption = document.querySelector("#visual-caption");
 const visualStage = document.querySelector(".visual-stage");
 
-const sfrTimelineData = [
+const TIMELINE_START = 2011;
+const TIMELINE_END = 2025;
+const CHART_WIDTH = 960;
+const CHART_HEIGHT = 360;
+const MARGIN = { top: 18, right: 22, bottom: 52, left: 52 };
+
+const observedAnchors = [
   {
     year: 2011,
-    value: 0.2,
-    valueLabel: "Pre-scale era (<1% proxy)",
-    title: "Pre-scale institutional SFR",
-    summary:
-      "GAO-reviewed studies report no single investor owning 1,000+ SFR homes as of late 2011, before institutional scale-up.",
-    source: "Source: GAO-24-106643 (late-2011 market structure).",
+    sharePct: 0.3,
+    low: 0.1,
+    high: 0.5,
+    observed: false,
+    label: "Pre-scale base",
+    note: "Estimated baseline from GAO evidence that no investor held 1,000+ homes in late 2011.",
+    sourceShort: "GAO-24-106643",
   },
   {
     year: 2015,
-    value: 1.5,
-    valueLabel: "1-2% of U.S. SFR stock",
-    title: "Early portfolio scale appears",
-    summary:
-      "By 2015, institutional investors that entered after the financial crisis collectively held an estimated 170,000-300,000 SFR homes.",
-    source: "Source: GAO-24-106643 (2015 estimate, 170k-300k homes).",
+    sharePct: 1.5,
+    low: 1.0,
+    high: 2.0,
+    observed: true,
+    label: "Early scale",
+    note: "GAO-reviewed studies estimate 170k-300k institutional homes, roughly 1-2% of U.S. SFR stock.",
+    sourceShort: "GAO-24-106643",
   },
   {
     year: 2022,
-    value: 3.8,
-    valueLabel: "3.8% benchmark",
-    title: "Institutional share benchmark rises",
-    summary:
-      "Callan cites Urban Institute data estimating institutional ownership at roughly 574,000 of 15.1 million U.S. SFR homes in June 2022.",
-    source: "Source: Callan (2024) citing Urban Institute data.",
+    sharePct: 3.8,
+    low: 3.8,
+    high: 3.8,
+    observed: true,
+    label: "Institutional benchmark",
+    note: "Urban Institute estimate cited by Callan: 574k of 15.1M U.S. single-family rentals.",
+    sourceShort: "Callan (2024) citing Urban Institute",
   },
   {
     year: 2025,
-    value: 5.5,
-    valueLabel: "$7.5B private-fund SFR exposure",
-    title: "Private-fund allocation deepens",
-    summary:
-      "NCREIF-tracked private-fund SFR market value is reported at $7.5B in Q2 2025, indicating continued institutional capital formation.",
-    source: "Source: NCREIF figures cited by Houlihan Lokey SFR update (Aug 2025).",
+    sharePct: 4.6,
+    low: 4.2,
+    high: 5.0,
+    observed: false,
+    label: "Recent estimate",
+    note: "Estimated continuation based on observed 2022 share plus private-fund SFR capital expansion through 2025.",
+    sourceShort: "Interpolation + NCREIF/Houlihan Lokey context",
   },
 ];
 
-function getPointPosition(index, length) {
-  if (length <= 1) {
-    return 50;
+const eventMarkers = [
+  {
+    year: 2012,
+    title: "Post-crisis entry",
+    note: "Large operators begin scaling scattered-home acquisitions.",
+  },
+  {
+    year: 2017,
+    title: "Public market phase",
+    note: "Public REIT market deepens institutional participation.",
+  },
+  {
+    year: 2021,
+    title: "Demand acceleration",
+    note: "Pandemic-era migration and rent growth pull in more institutional capital.",
+  },
+  {
+    year: 2023,
+    title: "Rate reset",
+    note: "Higher-rate regime shifts focus from acquisition speed to operating discipline.",
+  },
+];
+
+function interpolate(anchorA, anchorB, year, key) {
+  const span = anchorB.year - anchorA.year;
+  const ratio = span === 0 ? 0 : (year - anchorA.year) / span;
+  return anchorA[key] + (anchorB[key] - anchorA[key]) * ratio;
+}
+
+function buildAnnualSeries() {
+  const anchors = [...observedAnchors].sort((a, b) => a.year - b.year);
+  const series = [];
+
+  for (let year = TIMELINE_START; year <= TIMELINE_END; year += 1) {
+    const exact = anchors.find((item) => item.year === year);
+    if (exact) {
+      series.push({ ...exact, year });
+      continue;
+    }
+
+    const nextAnchor = anchors.find((item) => item.year > year);
+    const prevAnchor = [...anchors].reverse().find((item) => item.year < year);
+    if (!nextAnchor || !prevAnchor) {
+      continue;
+    }
+
+    series.push({
+      year,
+      sharePct: interpolate(prevAnchor, nextAnchor, year, "sharePct"),
+      low: interpolate(prevAnchor, nextAnchor, year, "low"),
+      high: interpolate(prevAnchor, nextAnchor, year, "high"),
+      observed: false,
+      label: "Interpolated year",
+      note: `Interpolated between ${prevAnchor.year} and ${nextAnchor.year} anchor points.`,
+      sourceShort: `${prevAnchor.sourceShort}; ${nextAnchor.sourceShort}`,
+    });
   }
-  return (index / (length - 1)) * 100;
+
+  return series;
 }
 
-function getPointHeight(value, maxValue) {
-  const floor = 8;
-  const ceiling = 88;
-  return floor + (value / maxValue) * (ceiling - floor);
+function scaleX(year) {
+  const usableWidth = CHART_WIDTH - MARGIN.left - MARGIN.right;
+  return MARGIN.left + ((year - TIMELINE_START) / (TIMELINE_END - TIMELINE_START)) * usableWidth;
 }
 
-function renderTimeline(mainTimeline, detailEls) {
-  if (!mainTimeline) {
+function scaleY(value) {
+  const yMax = 6;
+  const usableHeight = CHART_HEIGHT - MARGIN.top - MARGIN.bottom;
+  return MARGIN.top + (1 - value / yMax) * usableHeight;
+}
+
+function toLinePath(points) {
+  if (!points.length) {
+    return "";
+  }
+  return points
+    .map((point, index) => `${index === 0 ? "M" : "L"} ${point.x.toFixed(2)} ${point.y.toFixed(2)}`)
+    .join(" ");
+}
+
+function toAreaPath(points) {
+  if (!points.length) {
+    return "";
+  }
+  const baselineY = scaleY(0);
+  const start = `M ${points[0].x.toFixed(2)} ${baselineY.toFixed(2)}`;
+  const topLine = points.map((point) => `L ${point.x.toFixed(2)} ${point.y.toFixed(2)}`).join(" ");
+  const end = `L ${points[points.length - 1].x.toFixed(2)} ${baselineY.toFixed(2)} Z`;
+  return `${start} ${topLine} ${end}`;
+}
+
+function toBandPath(points) {
+  if (!points.length) {
+    return "";
+  }
+  const upper = points.map((point) => `L ${point.x.toFixed(2)} ${point.yHigh.toFixed(2)}`).join(" ");
+  const lower = [...points]
+    .reverse()
+    .map((point) => `L ${point.x.toFixed(2)} ${point.yLow.toFixed(2)}`)
+    .join(" ");
+  return `M ${points[0].x.toFixed(2)} ${points[0].yHigh.toFixed(2)} ${upper} ${lower} Z`;
+}
+
+function renderMiniChart(series) {
+  const miniSvg = document.querySelector("[data-sfr-mini-svg]");
+  const miniYears = document.querySelector("[data-sfr-mini-years]");
+  if (!miniSvg || !miniYears) {
     return;
   }
 
-  const pointsContainer = mainTimeline.querySelector("[data-sfr-points]");
-  if (!pointsContainer) {
+  const points = series.map((row) => ({
+    x: ((row.year - TIMELINE_START) / (TIMELINE_END - TIMELINE_START)) * 280,
+    y: 76 - (row.sharePct / 6) * 66,
+  }));
+
+  const linePath = points
+    .map((point, index) => `${index === 0 ? "M" : "L"} ${point.x.toFixed(2)} ${point.y.toFixed(2)}`)
+    .join(" ");
+  const areaPath = `M ${points[0].x.toFixed(2)} 76 ${points
+    .map((point) => `L ${point.x.toFixed(2)} ${point.y.toFixed(2)}`)
+    .join(" ")} L ${points[points.length - 1].x.toFixed(2)} 76 Z`;
+
+  miniSvg.querySelector("[data-sfr-mini-area]").setAttribute("d", areaPath);
+  miniSvg.querySelector("[data-sfr-mini-line]").setAttribute("d", linePath);
+  miniYears.innerHTML = `
+    <span>${TIMELINE_START}</span>
+    <span>${TIMELINE_END}</span>
+  `;
+}
+
+function renderTimeline(series, eventData) {
+  const chart = document.querySelector("[data-sfr-chart]");
+  if (!chart) {
     return;
   }
 
-  const maxValue = Math.max(...sfrTimelineData.map((item) => item.value));
-  const positions = sfrTimelineData.map((item, index) => {
-    const x = getPointPosition(index, sfrTimelineData.length);
-    const y = getPointHeight(item.value, maxValue);
-    return { x, y };
+  const gridGroup = chart.querySelector("[data-sfr-grid]");
+  const eventGroup = chart.querySelector("[data-sfr-events]");
+  const linePath = chart.querySelector("[data-sfr-line]");
+  const areaPath = chart.querySelector("[data-sfr-area]");
+  const bandPath = chart.querySelector("[data-sfr-band]");
+  const axisYears = chart.querySelector("[data-sfr-year-buttons]");
+  const focusDot = chart.querySelector("[data-sfr-focus-dot]");
+  const focusLine = chart.querySelector("[data-sfr-focus-line]");
+  const svg = chart.querySelector("[data-sfr-svg]");
+
+  const detailYear = chart.querySelector("[data-sfr-detail-year]");
+  const detailValue = chart.querySelector("[data-sfr-detail-value]");
+  const detailTitle = chart.querySelector("[data-sfr-detail-title]");
+  const detailSummary = chart.querySelector("[data-sfr-detail-summary]");
+  const detailSource = chart.querySelector("[data-sfr-detail-source]");
+  const detailFlag = chart.querySelector("[data-sfr-detail-flag]");
+
+  if (
+    !gridGroup ||
+    !eventGroup ||
+    !linePath ||
+    !areaPath ||
+    !bandPath ||
+    !axisYears ||
+    !focusDot ||
+    !focusLine ||
+    !svg ||
+    !detailYear ||
+    !detailValue ||
+    !detailTitle ||
+    !detailSummary ||
+    !detailSource ||
+    !detailFlag
+  ) {
+    return;
+  }
+
+  const points = series.map((row) => ({
+    ...row,
+    x: scaleX(row.year),
+    y: scaleY(row.sharePct),
+    yLow: scaleY(row.low),
+    yHigh: scaleY(row.high),
+  }));
+
+  linePath.setAttribute("d", toLinePath(points));
+  areaPath.setAttribute("d", toAreaPath(points));
+  bandPath.setAttribute("d", toBandPath(points));
+
+  gridGroup.innerHTML = "";
+  for (let tick = 0; tick <= 6; tick += 1) {
+    const y = scaleY(tick);
+    const horizontal = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    horizontal.setAttribute("x1", `${MARGIN.left}`);
+    horizontal.setAttribute("x2", `${CHART_WIDTH - MARGIN.right}`);
+    horizontal.setAttribute("y1", `${y}`);
+    horizontal.setAttribute("y2", `${y}`);
+    horizontal.setAttribute("class", "sfr-grid-line");
+    gridGroup.append(horizontal);
+  }
+
+  for (let year = TIMELINE_START; year <= TIMELINE_END; year += 2) {
+    const x = scaleX(year);
+    const vertical = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    vertical.setAttribute("x1", `${x}`);
+    vertical.setAttribute("x2", `${x}`);
+    vertical.setAttribute("y1", `${MARGIN.top}`);
+    vertical.setAttribute("y2", `${CHART_HEIGHT - MARGIN.bottom}`);
+    vertical.setAttribute("class", "sfr-grid-line is-vertical");
+    gridGroup.append(vertical);
+  }
+
+  eventGroup.innerHTML = "";
+  eventData.forEach((eventItem) => {
+    const x = scaleX(eventItem.year);
+    const marker = document.createElementNS("http://www.w3.org/2000/svg", "line");
+    marker.setAttribute("x1", `${x}`);
+    marker.setAttribute("x2", `${x}`);
+    marker.setAttribute("y1", `${MARGIN.top}`);
+    marker.setAttribute("y2", `${CHART_HEIGHT - MARGIN.bottom}`);
+    marker.setAttribute("class", "sfr-event-line");
+    eventGroup.append(marker);
+
+    const label = document.createElementNS("http://www.w3.org/2000/svg", "text");
+    label.setAttribute("x", `${x + 4}`);
+    label.setAttribute("y", `${MARGIN.top + 14}`);
+    label.setAttribute("class", "sfr-event-text");
+    label.textContent = `${eventItem.year} ${eventItem.title}`;
+    eventGroup.append(label);
   });
 
-  const shapeCoords = positions
-    .map((point) => `${point.x.toFixed(2)}% ${100 - point.y}%`)
-    .join(", ");
-  const axisLine = mainTimeline.querySelector(".sfr-axis-line");
-  if (axisLine) {
-    axisLine.style.setProperty("--line-shape", `${shapeCoords}, 100% 100%, 0 100%`);
+  let activeIndex = points.findIndex((row) => row.year === 2022);
+  if (activeIndex < 0) {
+    activeIndex = points.length - 1;
   }
 
-  pointsContainer.innerHTML = "";
+  const yearButtons = [];
 
-  let activeIndex = 0;
+  const updateDetail = (index, focusButton = false) => {
+    activeIndex = Math.max(0, Math.min(points.length - 1, index));
+    const active = points[activeIndex];
 
-  const updateDetail = (index) => {
-    activeIndex = index;
-    const activeItem = sfrTimelineData[index];
+    focusDot.setAttribute("cx", `${active.x}`);
+    focusDot.setAttribute("cy", `${active.y}`);
+    focusLine.setAttribute("x1", `${active.x}`);
+    focusLine.setAttribute("x2", `${active.x}`);
 
-    pointsContainer.querySelectorAll(".sfr-point").forEach((point, pointIndex) => {
-      point.classList.toggle("is-active", pointIndex === index);
-      point.setAttribute("aria-pressed", pointIndex === index ? "true" : "false");
+    detailYear.textContent = `${active.year}`;
+    detailValue.textContent = `${active.sharePct.toFixed(1)}% institutional SFR share`;
+    detailTitle.textContent = active.label;
+    detailSummary.textContent = active.note;
+    detailSource.textContent = `Source: ${active.sourceShort}`;
+    detailFlag.textContent = active.observed ? "Observed" : "Estimated";
+    detailFlag.classList.toggle("is-estimated", !active.observed);
+
+    yearButtons.forEach((button, idx) => {
+      const isActive = idx === activeIndex;
+      button.classList.toggle("is-active", isActive);
+      button.setAttribute("aria-pressed", isActive ? "true" : "false");
     });
 
-    detailEls.year.textContent = `${activeItem.year}`;
-    detailEls.value.textContent = activeItem.valueLabel;
-    detailEls.title.textContent = activeItem.title;
-    detailEls.summary.textContent = activeItem.summary;
-    detailEls.source.textContent = activeItem.source;
+    if (focusButton) {
+      yearButtons[activeIndex].focus();
+    }
   };
 
-  sfrTimelineData.forEach((item, index) => {
-    const point = document.createElement("button");
-    point.type = "button";
-    point.className = "sfr-point";
-    point.style.setProperty("--x", positions[index].x.toFixed(2));
-    point.style.setProperty("--y", positions[index].y.toFixed(2));
-    point.style.setProperty("--size", (4 + (item.value / maxValue) * 8).toFixed(2));
-    point.setAttribute("aria-label", `${item.year}: ${item.valueLabel}. ${item.title}`);
-    point.setAttribute("aria-pressed", "false");
-    point.innerHTML = `
-      <span class="sfr-point-dot" aria-hidden="true"></span>
-      <span class="sfr-point-label" aria-hidden="true">${item.year}</span>
-    `;
-
-    point.addEventListener("click", () => updateDetail(index));
-    point.addEventListener("focus", () => updateDetail(index));
-    point.addEventListener("keydown", (event) => {
+  axisYears.innerHTML = "";
+  points.forEach((point, index) => {
+    const button = document.createElement("button");
+    button.type = "button";
+    button.className = "sfr-year-button";
+    button.textContent = `${point.year}`;
+    button.setAttribute("aria-label", `Show SFR share for ${point.year}`);
+    button.setAttribute("aria-pressed", "false");
+    button.addEventListener("click", () => updateDetail(index));
+    button.addEventListener("focus", () => updateDetail(index));
+    button.addEventListener("keydown", (event) => {
       if (event.key === "ArrowRight") {
         event.preventDefault();
-        const next = Math.min(sfrTimelineData.length - 1, activeIndex + 1);
-        pointsContainer.querySelectorAll(".sfr-point")[next].focus();
-      }
-      if (event.key === "ArrowLeft") {
+        updateDetail(index + 1, true);
+      } else if (event.key === "ArrowLeft") {
         event.preventDefault();
-        const prev = Math.max(0, activeIndex - 1);
-        pointsContainer.querySelectorAll(".sfr-point")[prev].focus();
+        updateDetail(index - 1, true);
       }
     });
-
-    pointsContainer.append(point);
+    axisYears.append(button);
+    yearButtons.push(button);
   });
 
-  updateDetail(0);
-}
+  const svgPointToYearIndex = (clientX) => {
+    const rect = svg.getBoundingClientRect();
+    const x = clientX - rect.left;
+    const ratio = rect.width ? x / rect.width : 0;
+    const clamped = Math.max(0, Math.min(1, ratio));
+    const year = TIMELINE_START + clamped * (TIMELINE_END - TIMELINE_START);
+    return Math.round(year - TIMELINE_START);
+  };
 
-function renderMiniTimeline() {
-  const miniTrack = document.querySelector("[data-sfr-mini-track]");
-  if (!miniTrack) {
-    return;
-  }
+  svg.addEventListener("mousemove", (event) => {
+    updateDetail(svgPointToYearIndex(event.clientX));
+  });
+  svg.addEventListener("touchmove", (event) => {
+    if (event.touches[0]) {
+      updateDetail(svgPointToYearIndex(event.touches[0].clientX));
+    }
+  });
 
-  miniTrack.innerHTML = sfrTimelineData
-    .map(
-      (item) => `
-      <p class="sfr-mini-point">
-        ${item.year}
-        <strong>${item.valueLabel}</strong>
-      </p>
-    `
-    )
-    .join("");
+  updateDetail(activeIndex);
 }
 
 function setActiveChapter(chapter) {
   chapters.forEach((item) => item.classList.toggle("active", item === chapter));
-
   visualTitle.textContent = chapter.dataset.visualTitle;
   visualDescription.textContent = chapter.dataset.visualDescription;
   visualCaption.textContent = chapter.dataset.visualCaption;
@@ -170,7 +375,6 @@ const observer = new IntersectionObserver(
     const visibleEntry = entries
       .filter((entry) => entry.isIntersecting)
       .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
-
     if (visibleEntry) {
       setActiveChapter(visibleEntry.target);
     }
@@ -184,17 +388,6 @@ const observer = new IntersectionObserver(
 
 chapters.forEach((chapter) => observer.observe(chapter));
 
-const timelineEl = document.querySelector("[data-sfr-timeline]");
-const detailEls = {
-  year: document.querySelector("[data-sfr-detail-year]"),
-  value: document.querySelector("[data-sfr-detail-value]"),
-  title: document.querySelector("[data-sfr-detail-title]"),
-  summary: document.querySelector("[data-sfr-detail-summary]"),
-  source: document.querySelector("[data-sfr-detail-source]"),
-};
-
-if (timelineEl && Object.values(detailEls).every(Boolean)) {
-  renderTimeline(timelineEl, detailEls);
-}
-
-renderMiniTimeline();
+const annualSeries = buildAnnualSeries();
+renderTimeline(annualSeries, eventMarkers);
+renderMiniChart(annualSeries);
