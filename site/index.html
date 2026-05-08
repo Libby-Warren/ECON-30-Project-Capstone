@@ -378,6 +378,48 @@ nav a:hover {
   border-radius: 1.25rem;
 }
 
+.sfr-mini {
+  display: none;
+  gap: 0.75rem;
+}
+
+.sfr-mini-track {
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 0.45rem;
+}
+
+.sfr-mini-point {
+  margin: 0;
+  padding: 0.5rem 0.45rem;
+  text-align: center;
+  color: var(--paper-soft);
+  background: rgba(251, 248, 239, 0.11);
+  border: 1px solid rgba(251, 248, 239, 0.3);
+  border-radius: 0.6rem;
+  font-size: 0.72rem;
+  font-weight: 700;
+}
+
+.sfr-mini-point strong {
+  display: block;
+  margin-top: 0.18rem;
+  color: var(--lime);
+  font-size: 0.72rem;
+}
+
+.visual-stage.show-sfr-mini .placeholder-chart {
+  display: none;
+}
+
+.visual-stage.show-sfr-mini .sfr-mini {
+  display: grid;
+}
+
+.visual-stage.show-sfr-mini .visual-card {
+  align-content: stretch;
+}
+
 .placeholder-chart {
   display: flex;
   height: 200px;
@@ -462,12 +504,149 @@ nav a:hover {
   border-top: 1px solid var(--line);
 }
 
-.timeline article {
+.sfr-timeline {
   display: grid;
-  grid-template-columns: 160px minmax(220px, 0.45fr) minmax(0, 1fr);
-  gap: 1rem;
-  padding: 1.5rem 0;
-  border-bottom: 1px solid var(--line);
+  gap: 1.25rem;
+  padding: clamp(1rem, 2vw, 1.5rem) 0 0;
+}
+
+.sfr-axis {
+  position: relative;
+  min-height: 320px;
+  padding: 2rem 1.5rem 3.2rem;
+  background:
+    linear-gradient(rgba(35, 59, 42, 0.06) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(35, 59, 42, 0.06) 1px, transparent 1px),
+    var(--paper);
+  background-size: 28px 28px;
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+}
+
+.sfr-axis::after {
+  content: "";
+  position: absolute;
+  right: 1.5rem;
+  left: 1.5rem;
+  bottom: 2.7rem;
+  height: 2px;
+  background: rgba(35, 59, 42, 0.25);
+}
+
+.sfr-axis-line {
+  position: absolute;
+  right: 1.5rem;
+  left: 1.5rem;
+  bottom: 2.7rem;
+  height: 220px;
+  pointer-events: none;
+  background: linear-gradient(to top, rgba(35, 59, 42, 0.24), rgba(35, 59, 42, 0.06) 58%, transparent);
+  clip-path: polygon(var(--line-shape));
+}
+
+.sfr-points {
+  position: absolute;
+  inset: 0;
+}
+
+.sfr-point {
+  position: absolute;
+  bottom: calc(2.7rem + (var(--y) * 1%));
+  left: calc(1.5rem + (var(--x) * (100% - 3rem) / 100));
+  display: grid;
+  gap: 0.4rem;
+  place-items: center;
+  width: 0;
+  transform: translateX(-50%);
+  background: transparent;
+  border: 0;
+  cursor: pointer;
+}
+
+.sfr-point-dot {
+  width: calc(12px + (var(--size) * 1px));
+  height: calc(12px + (var(--size) * 1px));
+  background: var(--green);
+  border: 2px solid var(--paper-soft);
+  border-radius: 50%;
+  box-shadow: 0 0 0 2px rgba(35, 59, 42, 0.08);
+  transition:
+    transform 160ms ease,
+    box-shadow 160ms ease,
+    background 160ms ease;
+}
+
+.sfr-point-label {
+  position: absolute;
+  top: calc(100% + 1.85rem);
+  min-width: 52px;
+  text-align: center;
+  color: var(--muted);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.sfr-point.is-active .sfr-point-dot,
+.sfr-point:focus-visible .sfr-point-dot {
+  background: var(--rust);
+  transform: scale(1.14);
+  box-shadow: 0 0 0 4px rgba(184, 93, 59, 0.2);
+}
+
+.sfr-point:focus-visible {
+  outline: none;
+}
+
+.sfr-detail {
+  display: grid;
+  gap: 0.75rem;
+  padding: 1rem;
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 1rem;
+}
+
+.sfr-detail-meta {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.8rem;
+  align-items: center;
+}
+
+.sfr-detail-year,
+.sfr-detail-value {
+  margin: 0;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.sfr-detail-value {
+  color: var(--rust);
+}
+
+.sfr-detail h3 {
+  margin: 0;
+  font-size: clamp(1.35rem, 2.4vw, 2rem);
+  letter-spacing: -0.04em;
+}
+
+.sfr-detail p {
+  margin: 0;
+}
+
+.sfr-detail-source {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.85rem;
+}
+
+.sfr-method-note {
+  margin: 0;
+  color: var(--muted);
+  font-size: 0.86rem;
 }
 
 .timeline h3,
@@ -552,6 +731,26 @@ nav a:hover {
 
   .timeline article {
     grid-template-columns: 1fr;
+  }
+
+  .sfr-axis {
+    min-height: 290px;
+    padding: 1.5rem 1rem 3.4rem;
+  }
+
+  .sfr-axis::after,
+  .sfr-axis-line {
+    right: 1rem;
+    left: 1rem;
+  }
+
+  .sfr-point {
+    left: calc(1rem + (var(--x) * (100% - 2rem) / 100));
+  }
+
+  .sfr-point-label {
+    font-size: 0.66rem;
+    min-width: 42px;
   }
 }
 
@@ -725,6 +924,10 @@ nav a:hover {
               <span></span>
               <span></span>
             </div>
+            <div class="sfr-mini" data-sfr-mini aria-hidden="true">
+              <p class="visual-kicker">Institutional footprint (proxy)</p>
+              <div class="sfr-mini-track" data-sfr-mini-track></div>
+            </div>
             <p id="visual-caption">Chart placeholder: small landlords vs institutional owners.</p>
           </div>
         </aside>
@@ -747,8 +950,9 @@ nav a:hover {
           <article
             class="chapter"
             data-visual-title="Why Institutions Entered"
-            data-visual-description="Future timeline: post-crisis housing conditions and capital entry."
-            data-visual-caption="Timeline placeholder: 2008 housing bust to SFR platform growth."
+            data-visual-description="Interactive timeline: institutional SFR footprint from post-crisis entry to scaled platform capital."
+            data-visual-caption="Metric note: values are public-source proxies and may vary by institutional ownership definition."
+            data-visual-type="sfr-timeline"
           >
             <p class="chapter-number">02</p>
             <h2>Why Institutions Entered</h2>
@@ -805,29 +1009,32 @@ nav a:hover {
       <section class="timeline-section">
         <div class="section-heading">
           <p class="eyebrow">Timeline</p>
-          <h2>From crisis trade to mature asset class</h2>
+          <h2>Share of SFR in institutional portfolios</h2>
+          <p>
+            Public-source timeline of institutional SFR footprint. This is shown as a proxy for
+            portfolio allocation because definitions differ across datasets and investor universes.
+          </p>
         </div>
         <div class="timeline">
-          <article>
-            <span>2008-2012</span>
-            <h3>Distress and entry</h3>
-            <p>Placeholder: post-crisis housing dislocation creates buying opportunity.</p>
-          </article>
-          <article>
-            <span>2013-2019</span>
-            <h3>Platform formation</h3>
-            <p>Placeholder: operators professionalize acquisition, leasing, and maintenance.</p>
-          </article>
-          <article>
-            <span>2020-2022</span>
-            <h3>Demand surge</h3>
-            <p>Placeholder: migration, low rates, and rental demand support rapid growth.</p>
-          </article>
-          <article>
-            <span>2023-Today</span>
-            <h3>Higher-rate test</h3>
-            <p>Placeholder: returns depend more heavily on operations and market discipline.</p>
-          </article>
+          <div class="sfr-timeline" data-sfr-timeline>
+            <div class="sfr-axis" role="group" aria-label="SFR institutional footprint timeline">
+              <div class="sfr-axis-line" aria-hidden="true"></div>
+              <div class="sfr-points" data-sfr-points></div>
+            </div>
+            <article class="sfr-detail" data-sfr-detail aria-live="polite">
+              <div class="sfr-detail-meta">
+                <p class="sfr-detail-year" data-sfr-detail-year></p>
+                <p class="sfr-detail-value" data-sfr-detail-value></p>
+              </div>
+              <h3 data-sfr-detail-title></h3>
+              <p data-sfr-detail-summary></p>
+              <p class="sfr-detail-source" data-sfr-detail-source></p>
+            </article>
+            <p class="sfr-method-note">
+              Method: values represent selected public estimates of institutional SFR footprint
+              (market share or private-fund exposure proxies), not a single standardized index.
+            </p>
+          </div>
         </div>
       </section>
 
@@ -858,9 +1065,22 @@ nav a:hover {
           housing market data, and assumptions used for charts or underwriting examples.
         </p>
         <ul>
-          <li>Source placeholder: institutional SFR investor reports.</li>
-          <li>Source placeholder: housing market and rent growth datasets.</li>
-          <li>Source placeholder: financing and securitization research.</li>
+          <li>
+            U.S. Government Accountability Office (GAO-24-106643): institutional SFR growth
+            milestones including 2011 and 2015 estimates.
+          </li>
+          <li>
+            Urban Institute institutional ownership profile (as cited in Callan, 2024) for 2022
+            institutional market share benchmarks.
+          </li>
+          <li>
+            Callan institutional investor overview for portfolio context and definition caveats
+            across ownership thresholds.
+          </li>
+          <li>
+            NCREIF/Houlihan Lokey market updates for private-fund SFR exposure scale in recent
+            years.
+          </li>
         </ul>
       </section>
     </main>
