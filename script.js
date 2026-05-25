@@ -154,8 +154,8 @@ function renderSfrShareTimeline() {
     ${eventLines}
     <line class="sfr-focus-line" x1="${focus.px}" y1="${pad.top}" x2="${focus.px}" y2="${pad.top + plotH}" />
     ${dots}
-    <text fill="rgba(17,21,15,0.55)" font-size="10" x="${pad.left - 8}" y="${y(0) + 4}" text-anchor="end">0%</text>
-    <text fill="rgba(17,21,15,0.55)" font-size="10" x="${pad.left - 8}" y="${y(3.8) + 4}" text-anchor="end">~4%</text>
+    <text fill="rgba(244,241,234,0.45)" font-size="10" x="${pad.left - 8}" y="${y(0) + 4}" text-anchor="end">0%</text>
+    <text fill="rgba(244,241,234,0.45)" font-size="10" x="${pad.left - 8}" y="${y(3.8) + 4}" text-anchor="end">~4%</text>
   `;
 
   yearButtons.innerHTML = "";
@@ -359,5 +359,74 @@ const observer = new IntersectionObserver(
 
 chapters.forEach((chapter) => observer.observe(chapter));
 
+function initNavigation() {
+  const menuToggle = document.querySelector(".menu-toggle");
+  const menuClose = document.querySelector(".menu-close");
+  const overlay = document.getElementById("menu-overlay");
+  const exploreLinks = document.querySelectorAll(".explore-panel a, .menu-overlay a");
+
+  const closeMenu = () => {
+    if (!overlay || !menuToggle) return;
+    overlay.classList.remove("is-open");
+    overlay.setAttribute("aria-hidden", "true");
+    menuToggle.setAttribute("aria-expanded", "false");
+    document.body.style.overflow = "";
+  };
+
+  const openMenu = () => {
+    if (!overlay || !menuToggle) return;
+    overlay.classList.add("is-open");
+    overlay.setAttribute("aria-hidden", "false");
+    menuToggle.setAttribute("aria-expanded", "true");
+    document.body.style.overflow = "hidden";
+  };
+
+  menuToggle?.addEventListener("click", () => {
+    if (overlay?.classList.contains("is-open")) {
+      closeMenu();
+    } else {
+      openMenu();
+    }
+  });
+
+  menuClose?.addEventListener("click", closeMenu);
+  exploreLinks.forEach((link) => link.addEventListener("click", closeMenu));
+
+  const sections = ["story", "mission", "platform", "research", "vintage", "takeaways", "sources"];
+  const navMap = {
+    story: 0,
+    mission: 1,
+    platform: 2,
+    research: 3,
+    vintage: 4,
+    takeaways: 5,
+    sources: 6,
+  };
+
+  const panelLinks = document.querySelectorAll(".explore-panel a");
+
+  const sectionObserver = new IntersectionObserver(
+    (entries) => {
+      const visible = entries
+        .filter((e) => e.isIntersecting)
+        .sort((a, b) => b.intersectionRatio - a.intersectionRatio)[0];
+      if (!visible) return;
+      const id = visible.target.id;
+      const idx = navMap[id];
+      if (idx === undefined) return;
+      panelLinks.forEach((link, i) => link.classList.toggle("is-active", i === idx));
+    },
+    { rootMargin: "-30% 0px -55% 0px", threshold: [0, 0.15, 0.35] }
+  );
+
+  sections.forEach((id) => {
+    const el = document.getElementById(id);
+    if (el) sectionObserver.observe(el);
+  });
+
+  if (panelLinks[0]) panelLinks[0].classList.add("is-active");
+}
+
+initNavigation();
 renderVintageExplorer();
 renderSfrShareTimeline();
