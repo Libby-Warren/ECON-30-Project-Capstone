@@ -10,6 +10,19 @@ Capstone website for ECON 30 (Spring 2026): progress and inequality in instituti
 - Replaced placeholder copy; added story section, SFR share timeline, chapter visuals
 - Data: `data/sfr_institutional_share.csv`, `data/urban_vintage_figure5.csv`
 - Vintage Layers Explorer + institutional share timeline in `script.js`
+- Aligned to ECON 30 capstone rubric: research question, narrative arc, progress lens, interactive guides, limits/counterpoints, about capstone block
+
+## Rubric alignment (final website)
+
+| Criterion | Where on the site |
+|-----------|-------------------|
+| Original content | Mission “What this project adds”; comparison callout; original timeline/vintage work |
+| Original design | Editorial report layout, photography, gold identity |
+| Execution | Skip link, headings, bibliography, mobile layout, live URL in About |
+| Media / interactives | Ch. 3 guide + timeline (Ch. 2) + vintage explorer |
+| Narrative | Foreword arc (beginning/middle/end); memorable one-liner |
+| Progress & inequality | Chapter 4 progress grid (who gains, bottleneck, forward) |
+| Research question | Hero research question + argument; sections map to answer |
 
 ## Project Overview
 

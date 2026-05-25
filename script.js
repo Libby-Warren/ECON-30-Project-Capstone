@@ -392,15 +392,30 @@ function initNavigation() {
   menuClose?.addEventListener("click", closeMenu);
   exploreLinks.forEach((link) => link.addEventListener("click", closeMenu));
 
-  const sections = ["story", "mission", "platform", "research", "vintage", "takeaways", "sources"];
+  const sections = [
+    "question",
+    "story",
+    "mission",
+    "platform",
+    "research",
+    "interactives",
+    "progress",
+    "takeaways",
+    "sources",
+  ];
   const navMap = {
-    story: 0,
-    mission: 1,
-    platform: 2,
-    research: 3,
-    vintage: 4,
-    takeaways: 5,
-    sources: 6,
+    question: 0,
+    story: 1,
+    mission: 2,
+    platform: 3,
+    research: 4,
+    interactives: 5,
+    vintage: 5,
+    progress: 6,
+    takeaways: 7,
+    limits: 7,
+    sources: 8,
+    about: 8,
   };
 
   const panelLinks = document.querySelectorAll(".explore-panel a");
