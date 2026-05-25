@@ -154,8 +154,8 @@ function renderSfrShareTimeline() {
     ${eventLines}
     <line class="sfr-focus-line" x1="${focus.px}" y1="${pad.top}" x2="${focus.px}" y2="${pad.top + plotH}" />
     ${dots}
-    <text fill="rgba(244,241,234,0.45)" font-size="10" x="${pad.left - 8}" y="${y(0) + 4}" text-anchor="end">0%</text>
-    <text fill="rgba(244,241,234,0.45)" font-size="10" x="${pad.left - 8}" y="${y(3.8) + 4}" text-anchor="end">~4%</text>
+    <text fill="rgba(212,175,55,0.55)" font-size="10" x="${pad.left - 8}" y="${y(0) + 4}" text-anchor="end">0%</text>
+    <text fill="rgba(212,175,55,0.55)" font-size="10" x="${pad.left - 8}" y="${y(3.8) + 4}" text-anchor="end">~4%</text>
   `;
 
   yearButtons.innerHTML = "";
