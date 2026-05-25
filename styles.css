@@ -1441,37 +1441,88 @@ main {
   font-family: var(--font-display);
   font-size: 1.5rem;
   font-weight: 400;
+  color: var(--ink);
 }
 
 .sources-section ul {
   margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  max-width: 78ch;
+}
+
+.sources-section ul:not(.bibliography) {
   padding-left: 1.2rem;
-  max-width: 72ch;
+  list-style: disc;
 }
 
-.sources-section li {
-  margin-bottom: 0.65rem;
-  color: var(--text-soft);
+.sources-section ul:not(.bibliography) li {
+  margin-bottom: 0.85rem;
+  padding-left: 0.25rem;
+  color: rgba(10, 10, 10, 0.86);
+  line-height: 1.65;
 }
 
-.sources-section a {
-  text-decoration: underline;
-  text-decoration-color: var(--gold-muted);
-  text-underline-offset: 3px;
-  transition: color 0.2s, text-decoration-color 0.2s;
+.sources-section ul:not(.bibliography) li::marker {
+  color: var(--gold-rich);
 }
 
-.sources-section a:hover {
-  color: var(--gold-deep);
-  text-decoration-color: var(--gold);
+.sources-section ul:not(.bibliography) strong {
+  color: var(--ink);
+  font-weight: 600;
 }
 
-.report-panel--light .sources-section a:hover {
+/* Bibliography — structured entries (readable on cream panel) */
+.bibliography {
+  display: flex;
+  flex-direction: column;
+  gap: 1.15rem;
+  margin-top: 1.25rem;
+}
+
+.bib-entry {
+  margin: 0;
+  padding: 1rem 1.15rem 1rem 1.25rem;
+  border-left: 3px solid var(--gold-rich);
+  background: rgba(255, 255, 255, 0.55);
+  border-radius: 0 4px 4px 0;
+  font-size: 0.98rem;
+  line-height: 1.6;
+  color: var(--ink);
+}
+
+.bib-org {
+  display: block;
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
   color: var(--gold-dark);
+  margin-bottom: 0.35rem;
 }
 
-.report-panel--light .sources-section li {
-  color: rgba(10, 10, 10, 0.75);
+.bib-title {
+  display: inline;
+  color: var(--ink);
+  font-weight: 500;
+  text-decoration: none;
+  border-bottom: 1px solid rgba(138, 109, 46, 0.45);
+  transition: color 0.2s, border-color 0.2s;
+}
+
+.bib-title:hover {
+  color: var(--gold-deep);
+  border-bottom-color: var(--gold);
+}
+
+.bib-meta {
+  display: inline;
+  color: rgba(10, 10, 10, 0.62);
+  font-size: 0.92rem;
+}
+
+.bib-entry .bib-title + .bib-meta::before {
+  content: " ";
 }
 
 /* —— Footer —— */
