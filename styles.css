@@ -1328,9 +1328,22 @@ main {
   color: rgba(10, 10, 10, 0.65);
 }
 
-.report-panel--light .vintage-detail .sfr-detail-year,
+.report-panel--light .vintage-row-head p {
+  color: var(--gold-dark);
+}
+
+.report-panel--light .vintage-detail .sfr-detail-year {
+  color: var(--gold-rich);
+}
+
 .report-panel--light .vintage-detail h3 {
   color: var(--ink);
+}
+
+.report-panel--light .vintage-cohort.is-active,
+.report-panel--light .vintage-mode.is-active {
+  border-color: var(--gold-rich);
+  color: var(--gold-deep);
 }
 
 .report-panel--light .vintage-detail p {
