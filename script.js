@@ -440,6 +440,19 @@ function initNavigation() {
   });
 
   if (panelLinks[0]) panelLinks[0].classList.add("is-active");
+
+  document.querySelectorAll('.ticker a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const id = link.getAttribute("href")?.slice(1);
+      if (!id) return;
+      const target = document.getElementById(id);
+      if (!target) return;
+      event.preventDefault();
+      closeMenu();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      history.pushState(null, "", `#${id}`);
+    });
+  });
 }
 
 initNavigation();

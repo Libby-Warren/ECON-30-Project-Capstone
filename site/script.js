@@ -392,15 +392,30 @@ function initNavigation() {
   menuClose?.addEventListener("click", closeMenu);
   exploreLinks.forEach((link) => link.addEventListener("click", closeMenu));
 
-  const sections = ["story", "mission", "platform", "research", "vintage", "takeaways", "sources"];
+  const sections = [
+    "question",
+    "story",
+    "mission",
+    "platform",
+    "research",
+    "interactives",
+    "progress",
+    "takeaways",
+    "sources",
+  ];
   const navMap = {
-    story: 0,
-    mission: 1,
-    platform: 2,
-    research: 3,
-    vintage: 4,
-    takeaways: 5,
-    sources: 6,
+    question: 0,
+    story: 1,
+    mission: 2,
+    platform: 3,
+    research: 4,
+    interactives: 5,
+    vintage: 5,
+    progress: 6,
+    takeaways: 7,
+    limits: 7,
+    sources: 8,
+    about: 8,
   };
 
   const panelLinks = document.querySelectorAll(".explore-panel a");
@@ -425,6 +440,19 @@ function initNavigation() {
   });
 
   if (panelLinks[0]) panelLinks[0].classList.add("is-active");
+
+  document.querySelectorAll('.ticker a[href^="#"]').forEach((link) => {
+    link.addEventListener("click", (event) => {
+      const id = link.getAttribute("href")?.slice(1);
+      if (!id) return;
+      const target = document.getElementById(id);
+      if (!target) return;
+      event.preventDefault();
+      closeMenu();
+      target.scrollIntoView({ behavior: "smooth", block: "start" });
+      history.pushState(null, "", `#${id}`);
+    });
+  });
 }
 
 initNavigation();

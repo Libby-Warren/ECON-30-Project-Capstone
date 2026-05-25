@@ -49,6 +49,11 @@ html {
   scroll-behavior: smooth;
 }
 
+/* Anchor targets clear the fixed header */
+[id] {
+  scroll-margin-top: calc(var(--header-h) + 1.25rem);
+}
+
 body {
   margin: 0;
   background: var(--bg);
@@ -265,12 +270,14 @@ img {
   background: var(--bg);
   opacity: 0;
   visibility: hidden;
+  pointer-events: none;
   transition: opacity 0.4s var(--ease), visibility 0.4s;
 }
 
 .menu-overlay.is-open {
   opacity: 1;
   visibility: visible;
+  pointer-events: auto;
 }
 
 .menu-overlay .explore-label {
@@ -515,6 +522,8 @@ main {
 
 /* —— Ticker —— */
 .ticker {
+  position: relative;
+  z-index: 10;
   display: flex;
   overflow: hidden;
   border-top: 1px solid var(--line-gold);
