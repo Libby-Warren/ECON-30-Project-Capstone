@@ -47,7 +47,9 @@
       </div>
 
       <main id="top">
-        <section class="hero-panel" aria-labelledby="hero-title">
+        <section class="hero-panel hero-panel--photo" aria-labelledby="hero-title">
+          <div class="hero-panel__scrim" aria-hidden="true"></div>
+          <div class="hero-panel__content">
           <p class="report-meta">Capstone Report 2026</p>
           <h1 id="hero-title" class="hero-display">
             <span>The</span>
@@ -67,6 +69,7 @@
             </blockquote>
           </div>
           <p class="hero-scroll"><a href="#story">Explore the report</a></p>
+          </div>
         </section>
 
       <section class="ticker" aria-label="Project theme">
@@ -79,22 +82,35 @@
       <section id="story" class="report-panel story-section">
         <p class="eyebrow">Foreword</p>
         <h2 class="panel-title">Story, puzzle, and why it matters now</h2>
+        <figure class="photo-feature photo-feature--wide">
+          <img
+            src="images/sfr-image-2.jpg"
+            alt="Row of single-family rental homes along a suburban street"
+            width="1600"
+            height="900"
+            loading="lazy"
+          />
+          <figcaption>Institutional SFR targets the same suburban stock many households rent—often newer builds in high-growth metros.</figcaption>
+        </figure>
         <div class="story-grid">
-          <article class="story-card">
+          <article class="story-card story-card--photo">
+            <img src="images/keys-housing.jpg" alt="House keys" loading="lazy" />
             <h3>The story</h3>
             <p>
               After the 2007–2009 crisis, firms with capital access bought distressed homes and built
               centralized systems to lease and maintain them across many neighborhoods.
             </p>
           </article>
-          <article class="story-card">
+          <article class="story-card story-card--photo">
+            <img src="images/neighborhood-aerial.jpg" alt="Aerial neighborhood" loading="lazy" />
             <h3>The puzzle</h3>
             <p>
               National institutional share is still limited, yet the issue feels urgent locally—and
               credible sources disagree on how much investors affect prices, rents, and tenants.
             </p>
           </article>
-          <article class="story-card">
+          <article class="story-card story-card--photo">
+            <img src="images/house-exterior.jpg" alt="Single-family home exterior" loading="lazy" />
             <h3>Why now</h3>
             <p>
               High housing costs and active policy proposals—from California bills to federal
@@ -109,6 +125,8 @@
         <h2 class="panel-title">
           How a fragmented rental market became investable at institutional scale.
         </h2>
+        <div class="media-split">
+          <div class="media-split__copy">
         <p class="panel-intro">
           This project connects the history of single-family rentals (SFR)—houses built for one
           household but rented out—to the economics of institutional platforms: market selection,
@@ -134,10 +152,22 @@
             </dd>
           </dl>
         </div>
+          </div>
+          <figure class="media-split__figure">
+            <img
+              src="images/modern-home.jpg"
+              alt="Contemporary single-family home exterior"
+              width="1200"
+              height="800"
+              loading="lazy"
+            />
+            <figcaption>Photo: Unsplash (see Image credits in Sources)</figcaption>
+          </figure>
+        </div>
       </section>
 
       <section class="feature-strip" aria-label="Asset class overview">
-        <article>
+        <article class="feature-card feature-card--buy">
           <p class="metric">01</p>
           <h3>Buy Homes</h3>
           <p>
@@ -145,7 +175,7 @@
             with cash advantages when mortgage credit is tight (GAO 2024).
           </p>
         </article>
-        <article>
+        <article class="feature-card feature-card--operate">
           <p class="metric">02</p>
           <h3>Operate at Scale</h3>
           <p>
@@ -153,7 +183,7 @@
             behave like one operating company.
           </p>
         </article>
-        <article>
+        <article class="feature-card feature-card--finance">
           <p class="metric">03</p>
           <h3>Finance the Platform</h3>
           <p>
@@ -208,9 +238,24 @@
             </p>
           </article>
         </div>
+
+        <div class="photo-gallery" aria-label="Housing imagery">
+          <figure>
+            <img src="images/sfr-image-1.jpg" alt="Aerial view of dense suburban single-family neighborhood" loading="lazy" />
+            <figcaption>Project photo — suburban SFR footprint at neighborhood scale</figcaption>
+          </figure>
+          <figure>
+            <img src="images/suburban-street.jpg" alt="Suburban street with new homes" loading="lazy" />
+            <figcaption>Unsplash — street-level rental stock</figcaption>
+          </figure>
+          <figure>
+            <img src="images/neighborhood-aerial.jpg" alt="Aerial view of residential neighborhood" loading="lazy" />
+            <figcaption>Unsplash — where concentration is visible locally</figcaption>
+          </figure>
+        </div>
       </section>
 
-      <section class="quote-band" aria-label="Project framing">
+      <section class="quote-band quote-band--photo" aria-label="Project framing">
         <div>
           <blockquote>Designed for scattered homes. Engineered for scale.</blockquote>
           <cite>
@@ -229,6 +274,9 @@
             Before large platforms, most single-family rentals were held by smaller owners—not one
             national operating company.
           </p>
+          <figure class="visual-stage-photo">
+            <img src="images/keys-housing.jpg" alt="House keys representing home purchase and rental access" loading="lazy" />
+          </figure>
           <div class="visual-card">
             <div class="fragmented-bars" aria-hidden="true">
               <div class="fragmented-row">
@@ -386,6 +434,7 @@
       </section>
 
       <section id="vintage" class="report-panel report-panel--light timeline-section">
+        <div class="timeline-layout">
         <div class="section-heading">
           <p class="eyebrow">Chapter 3</p>
           <h2 class="panel-title">Who owns newer rental stock?</h2>
@@ -431,6 +480,15 @@
             </p>
           </div>
         </div>
+        <figure class="timeline-side-photo">
+          <img src="images/sfr-image-1.jpg" alt="Aerial suburban homes illustrating portfolio scale" loading="lazy" />
+          <figcaption>Project photo — many homes, one operating map</figcaption>
+        </figure>
+        </div>
+      </section>
+
+      <section class="takeaways-banner" aria-hidden="true">
+        <img src="images/house-exterior.jpg" alt="Decorative housing banner" loading="lazy" />
       </section>
 
       <section id="takeaways" class="report-panel takeaway-section">
@@ -497,6 +555,12 @@
           <li><strong>Rents:</strong> Mixed evidence on whether institutional owners raise rents faster than small landlords.</li>
           <li><strong>Tenants:</strong> GAO notes limited and mixed findings on maintenance, fees, and eviction patterns.</li>
           <li><strong>Supply:</strong> Critics warn bans could reduce rental units; supporters argue ownership access matters more.</li>
+        </ul>
+
+        <h3>Image credits</h3>
+        <ul>
+          <li><strong>sfr-image-1.jpg, sfr-image-2.jpg</strong> — Project photos (Libby Warren).</li>
+          <li><strong>modern-home.jpg, suburban-street.jpg, neighborhood-aerial.jpg, house-exterior.jpg, keys-housing.jpg</strong> — <a href="https://unsplash.com/license" target="_blank" rel="noopener noreferrer">Unsplash License</a> (free use with attribution).</li>
         </ul>
 
         <h3>Bibliography</h3>
