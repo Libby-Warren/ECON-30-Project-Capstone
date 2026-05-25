@@ -6,13 +6,14 @@
     <title>The SFR Machine</title>
     <link rel="stylesheet" href="styles.css" />
     <meta name="description" content="ECON 30 capstone — institutional single-family rentals, progress and inequality." />
-
+    <meta name="author" content="Libby Warren" />
   </head>
   <body>
+    <a class="skip-link" href="#main-content">Skip to main content</a>
     <div class="site-shell">
       <header class="site-header">
         <span class="brand-present">ECON 30 presents</span>
-        <a class="logo" href="#top">The SFR Machine</a>
+        <a class="logo" href="#main-content">The SFR Machine</a>
         <button type="button" class="menu-toggle" aria-expanded="false" aria-controls="menu-overlay">
           Menu
         </button>
@@ -21,13 +22,15 @@
       <nav class="explore-panel" aria-label="Explore report">
         <p class="explore-label">Explore by</p>
         <ul>
-          <li><a href="#story"><span>Foreword</span>Story &amp; puzzle</a></li>
-          <li><a href="#mission"><span>Introduction</span>Mission &amp; definitions</a></li>
+          <li><a href="#question"><span>Question</span>Research question</a></li>
+          <li><a href="#story"><span>Foreword</span>Story &amp; arc</a></li>
+          <li><a href="#mission"><span>Introduction</span>Mission &amp; contribution</a></li>
           <li><a href="#platform"><span>Chapter 1</span>The platform</a></li>
-          <li><a href="#research"><span>Chapter 2</span>Research — five parts</a></li>
-          <li><a href="#vintage"><span>Chapter 3</span>Quantified insights</a></li>
-          <li><a href="#takeaways"><span>Chapter 4</span>Conclusions</a></li>
-          <li><a href="#sources"><span>Contributors</span>Sources &amp; methods</a></li>
+          <li><a href="#research"><span>Chapter 2</span>Evidence modules</a></li>
+          <li><a href="#interactives"><span>Chapter 3</span>Interactive insights</a></li>
+          <li><a href="#progress"><span>Chapter 4</span>Progress &amp; inequality</a></li>
+          <li><a href="#takeaways"><span>Chapter 5</span>Conclusions &amp; limits</a></li>
+          <li><a href="#sources"><span>Appendix</span>Sources &amp; about</a></li>
         </ul>
         <p class="explore-footer">Capstone report · Progress and Inequality · Stanford ECON 30 · Libby Warren</p>
       </nav>
@@ -36,18 +39,20 @@
         <button type="button" class="menu-close">Close</button>
         <p class="explore-label">Explore by</p>
         <ul>
-          <li><a href="#story">Story &amp; puzzle</a></li>
+          <li><a href="#question">Research question</a></li>
+          <li><a href="#story">Story</a></li>
           <li><a href="#mission">Mission</a></li>
           <li><a href="#platform">Platform</a></li>
           <li><a href="#research">Research</a></li>
-          <li><a href="#vintage">Vintage data</a></li>
+          <li><a href="#interactives">Interactives</a></li>
+          <li><a href="#progress">Progress</a></li>
           <li><a href="#takeaways">Conclusions</a></li>
           <li><a href="#sources">Sources</a></li>
         </ul>
       </div>
 
-      <main id="top">
-        <section class="hero-panel hero-panel--photo" aria-labelledby="hero-title">
+      <main id="main-content">
+        <section id="top" class="hero-panel hero-panel--photo" aria-labelledby="hero-title">
           <div class="hero-panel__scrim" aria-hidden="true"></div>
           <div class="hero-panel__content">
           <p class="report-meta">Capstone Report 2026</p>
@@ -60,6 +65,18 @@
             Progress and inequality in housing—how institutional investors turned scattered
             single-family rentals into a scalable platform, and why the debate remains contested.
           </p>
+          <div class="research-question" id="question">
+            <p class="eyebrow">Research question</p>
+            <p class="research-question__text">
+              If institutional investors own only a small share of U.S. single-family rentals nationally,
+              why does the <em>SFR machine</em> still reshape neighborhoods—and how should policymakers
+              respond when credible evidence on rents, prices, and tenants is mixed?
+            </p>
+            <p class="research-question__claim">
+              <strong>Argument:</strong> The main story is the platform (buy–operate–finance), not portfolio
+              size alone—and progress in housing finance has uneven distributional consequences.
+            </p>
+          </div>
           <div class="hero-thesis" aria-label="Project thesis">
             <p>Project thesis</p>
             <blockquote>
@@ -72,12 +89,12 @@
           </div>
         </section>
 
-      <section class="ticker" aria-label="Project theme">
-        <span>Foreclosure crisis</span>
-        <span>Platform SFR</span>
-        <span>Mixed evidence</span>
-        <span>Policy debate</span>
-      </section>
+      <nav class="ticker" aria-label="Jump to report themes">
+        <a href="#story">Foreclosure crisis</a>
+        <a href="#platform">Platform SFR</a>
+        <a href="#limits">Mixed evidence</a>
+        <a href="#progress">Policy debate</a>
+      </nav>
 
       <section id="story" class="report-panel story-section">
         <p class="eyebrow">Foreword</p>
@@ -118,6 +135,28 @@
             </p>
           </article>
         </div>
+
+        <div class="narrative-arc" aria-label="Story arc">
+          <article class="arc-step">
+            <span class="arc-label">Beginning</span>
+            <h3>Crisis opens the door</h3>
+            <p>Foreclosures, tight credit, and rental demand let capital buy homes at scale.</p>
+          </article>
+          <article class="arc-step">
+            <span class="arc-label">Middle</span>
+            <h3>The platform takes shape</h3>
+            <p>Acquisition, operations, and financing turn scattered units into one repeatable system.</p>
+          </article>
+          <article class="arc-step">
+            <span class="arc-label">End</span>
+            <h3>Policy under uncertainty</h3>
+            <p>Mixed evidence forces tradeoffs—bans, transparency, or targeted rules—not slogans.</p>
+          </article>
+        </div>
+
+        <p class="memorable-line" role="note">
+          <strong>One line to remember:</strong> National share is small; local stakes and platform economics are not.
+        </p>
       </section>
 
       <section id="mission" class="report-panel report-panel--light mission-section">
@@ -125,6 +164,24 @@
         <h2 class="panel-title">
           How a fragmented rental market became investable at institutional scale.
         </h2>
+        <div class="contribution-box" id="contribution">
+          <h3>What this project adds (original framing)</h3>
+          <ul>
+            <li>
+              <strong>Platform lens:</strong> Connects GAO scale data, Urban vintage composition, and policy
+              debate into one mechanism—organizational and financial progress, not “Wall Street owns everything.”
+            </li>
+            <li>
+              <strong>Original data work:</strong> Builds a documented institutional-share timeline (observed
+              anchors + labeled interpolation) and an interactive vintage comparison readers can explore.
+            </li>
+            <li>
+              <strong>Student synthesis:</strong> Maps each site section to the research question and states
+              what is claimed vs. not claimed (see Limits in Conclusions).
+            </li>
+          </ul>
+        </div>
+
         <div class="media-split">
           <div class="media-split__copy">
         <p class="panel-intro">
@@ -253,6 +310,29 @@
             <figcaption>Unsplash — where concentration is visible locally</figcaption>
           </figure>
         </div>
+
+        <div class="comparison-callout" aria-label="Key comparison since 2000">
+          <p class="eyebrow">Original comparison</p>
+          <h3>Since 2000: who holds newer stock?</h3>
+          <div class="comparison-bars">
+            <div class="comparison-row">
+              <span>Institutional SFR</span>
+              <div class="comparison-track"><span style="width:45.8%">45.8%</span></div>
+            </div>
+            <div class="comparison-row">
+              <span>Mega investors</span>
+              <div class="comparison-track"><span style="width:48.8%">48.8%</span></div>
+            </div>
+            <div class="comparison-row">
+              <span>Local investors</span>
+              <div class="comparison-track"><span class="is-local" style="width:23.1%">23.1%</span></div>
+            </div>
+          </div>
+          <p class="comparison-note">
+            Urban Institute Figure 5 (2021, 20 largest MSAs)—share of each group’s portfolio built since 2000.
+            Explore interactively in <a href="#interactives">Chapter 3</a>.
+          </p>
+        </div>
       </section>
 
       <section class="quote-band quote-band--photo" aria-label="Project framing">
@@ -265,10 +345,11 @@
         </div>
       </section>
 
-      <section id="research" class="research-section">
+      <section id="research" class="research-section" aria-labelledby="research-heading">
+        <h2 id="research-heading" class="visually-hidden">Research evidence modules</h2>
         <aside class="visual-stage" aria-live="polite">
           <p class="eyebrow">Chapter 2</p>
-          <p class="visual-kicker">Research module</p>
+          <p class="visual-kicker">Research module — answers the research question in five steps</p>
           <h2 id="visual-title">Fragmented Market</h2>
           <p id="visual-description">
             Before large platforms, most single-family rentals were held by smaller owners—not one
@@ -292,7 +373,9 @@
               </p>
             </div>
             <div class="sfr-timeline-panel" data-sfr-timeline>
+              <p class="interactive-badge">Interactive insight 1</p>
               <p class="visual-kicker">Institutional share of U.S. SFR stock</p>
+              <p class="interactive-hint">Click years to see why national scale stays small while the story still matters locally.</p>
               <figure class="sfr-graphic">
                 <svg class="sfr-svg" viewBox="0 0 520 260" data-sfr-svg aria-label="Institutional SFR share over time"></svg>
               </figure>
@@ -433,10 +516,39 @@
         </div>
       </section>
 
+      <section id="interactives" class="report-panel interactives-intro">
+        <p class="eyebrow">Chapter 3 — Quantified insights</p>
+        <h2 class="panel-title">Two interactives that carry the argument</h2>
+        <p class="panel-intro">
+          These are not decorative charts. Each one shows an insight you cannot get from a single
+          headline number—supporting the platform story and the national-vs-local puzzle.
+        </p>
+        <div class="interactive-cards">
+          <article class="interactive-card">
+            <p class="interactive-badge">Interactive 1</p>
+            <h3>Institutional share timeline</h3>
+            <p>
+              Scroll to <a href="#research">Research → Why Institutions Entered</a>. Anchored GAO/Urban
+              data with honest interpolation labels—shows growth without overstating market share.
+            </p>
+            <a class="text-button" href="#research">Open timeline chart</a>
+          </article>
+          <article class="interactive-card">
+            <p class="interactive-badge">Interactive 2</p>
+            <h3>Vintage layers explorer</h3>
+            <p>
+              Below: compare investor groups’ exposure to homes built since 2000—institutional portfolios
+              tilt newer; local investors tilt older. That supports the operating-model mechanism.
+            </p>
+            <a class="text-button" href="#vintage">Open vintage explorer</a>
+          </article>
+        </div>
+      </section>
+
       <section id="vintage" class="report-panel report-panel--light timeline-section">
         <div class="timeline-layout">
         <div class="section-heading">
-          <p class="eyebrow">Chapter 3</p>
+          <p class="eyebrow">Vintage data</p>
           <h2 class="panel-title">Who owns newer rental stock?</h2>
           <p>
             Institutional and mega investors concentrate in homes built since 2000—about 46–49% of
@@ -450,6 +562,7 @@
           </p>
         </div>
         <div class="timeline">
+          <p class="interactive-badge interactive-badge--light">Interactive insight 2</p>
           <div class="vintage-explorer" data-vintage-explorer>
             <div class="vintage-controls">
               <div class="vintage-cohorts" data-vintage-cohorts></div>
@@ -487,13 +600,64 @@
         </div>
       </section>
 
+      <section id="progress" class="report-panel progress-section">
+        <p class="eyebrow">Chapter 4 — Progress &amp; inequality (ECON 30)</p>
+        <h2 class="panel-title">What this case teaches about progress</h2>
+        <p class="panel-intro">
+          ECON 30 asks how economic and social progress relates to who is left behind. Institutional SFR
+          is a clear example: organizational and financial innovation scaled a rental asset class—but
+          gains and risks are distributed unevenly.
+        </p>
+        <div class="progress-grid">
+          <article>
+            <h3>Engine of progress</h3>
+            <p>
+              Capital markets, data, and professional management made fragmented rentals investable—
+              a form of <strong>financial and organizational progress</strong> similar in spirit to scaling
+              other asset classes.
+            </p>
+          </article>
+          <article>
+            <h3>Who may gain</h3>
+            <p>
+              Investors and managers capture scale economies; some renters get professionally maintained
+              stock; policymakers gain a visible target in housing crises. Gains are not automatic for
+              tenants or would-be owners.
+            </p>
+          </article>
+          <article>
+            <h3>Who may lose ground</h3>
+            <p>
+              Households priced out of ownership in markets where investors compete for the same homes;
+              smaller landlords on different cost curves; communities with weak tenant protections when
+              platforms pass macro shocks through fees or turnover.
+            </p>
+          </article>
+          <article>
+            <h3>Bottleneck illuminated</h3>
+            <p>
+              The binding constraint is not only “more houses”—it is <strong>rules and data</strong>:
+              who can access ownership, how we measure institutional activity locally, and whether policy
+              trades rental supply against owner-occupant access.
+            </p>
+          </article>
+        </div>
+        <p class="progress-forward">
+          <strong>Looking forward:</strong> Better local disclosure and consistent definitions matter more
+          than national slogans—especially while evidence on rents and prices remains mixed (GAO 2024).
+        </p>
+      </section>
+
       <section class="takeaways-banner" aria-hidden="true">
         <img src="images/house-exterior.jpg" alt="Decorative housing banner" loading="lazy" />
       </section>
 
       <section id="takeaways" class="report-panel takeaway-section">
-        <p class="eyebrow">Chapter 4</p>
+        <p class="eyebrow">Chapter 5</p>
         <h2 class="panel-title">Three evidence-backed takeaways</h2>
+        <p class="memorable-line memorable-line--dark">
+          <strong>One line to remember:</strong> National share is small; local stakes and platform economics are not.
+        </p>
         <div class="takeaway-grid">
           <article>
             <h3>Platform, not pile of houses</h3>
@@ -517,11 +681,55 @@
             </p>
           </article>
         </div>
+
+        <div class="limits-section" id="limits">
+          <h3>Limits, counterpoints, and what we do not claim</h3>
+          <p class="panel-intro panel-intro--tight">
+            A strong argument acknowledges tradeoffs. This project stays descriptive and mechanism-focused;
+            it does not prove institutional investors are the main cause of national unaffordability.
+          </p>
+          <div class="limits-grid">
+            <article>
+              <h4>Counterpoint: small national share</h4>
+              <p>Brookings and others argue aggregate effects may be limited; bans could shrink rental supply.</p>
+              <p class="limits-response"><strong>Response:</strong> Local concentration and platform economics still matter for governance—even when averages look small.</p>
+            </article>
+            <article>
+              <h4>Counterpoint: mixed harm evidence</h4>
+              <p>GAO’s review finds inconsistent results on rents, prices, and tenant treatment.</p>
+              <p class="limits-response"><strong>Response:</strong> The site shows disagreement explicitly; policy should target data gaps and definitions, not myths.</p>
+            </article>
+            <article>
+              <h4>Counterpoint: supply vs. ownership</h4>
+              <p>Institutional buyers add rental units some markets need; critics focus on lost owner-occupancy.</p>
+              <p class="limits-response"><strong>Response:</strong> Progress-and-inequality framing requires weighing both access to ownership and stable rentals.</p>
+            </article>
+          </div>
+        </div>
       </section>
 
       <section id="sources" class="report-panel report-panel--light sources-section">
-        <p class="eyebrow">Contributors</p>
+        <p class="eyebrow">Appendix</p>
         <h2 class="panel-title">Sources and methods</h2>
+
+        <div class="about-capstone" id="about">
+          <h3>About this capstone</h3>
+          <dl>
+            <dt>Course</dt>
+            <dd>ECON 30 — Progress and Inequality (Spring 2026), Stanford University</dd>
+            <dt>Author</dt>
+            <dd>Libby Warren</dd>
+            <dt>Submitted</dt>
+            <dd>June 8, 2026, 11:30am (website as final output)</dd>
+            <dt>Live URL</dt>
+            <dd><a href="https://econ-30-project-capstone.vercel.app/">econ-30-project-capstone.vercel.app</a></dd>
+          </dl>
+          <p>
+            This site is organized as a scroll narrative: research question → story → platform evidence →
+            interactive data → progress lens → conclusions with limits → sources. Photography includes
+            original project images and credited stock photos.
+          </p>
+        </div>
         <p class="panel-intro">
           This capstone synthesizes government, academic, journalism, and policy sources. Where
           sources disagree on harm vs. benefit, the site presents both sides. Causal language is
@@ -603,8 +811,8 @@
       </main>
 
       <footer class="site-footer">
-        <a class="logo" href="#top">The SFR Machine</a>
-        <a href="#top">Back to top</a>
+        <a class="logo" href="#main-content">The SFR Machine</a>
+        <a href="#main-content">Back to top</a>
         <p>© 2026 Libby Warren · ECON 30 Capstone · Progress and Inequality. Research synthesis; chart estimates labeled on site.</p>
       </footer>
     </div>

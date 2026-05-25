@@ -331,7 +331,6 @@ main {
 .visual-kicker,
 .chapter-number,
 .metric,
-.ticker span,
 .platform-grid span {
   font-size: 0.68rem;
   font-weight: 500;
@@ -349,7 +348,7 @@ main {
   color: var(--gold-rich);
 }
 
-.ticker span,
+.ticker a,
 .platform-grid span {
   color: var(--text-muted);
 }
@@ -523,20 +522,30 @@ main {
   background: linear-gradient(90deg, rgba(212, 175, 55, 0.04), transparent 30%, transparent 70%, rgba(212, 175, 55, 0.04));
 }
 
-.ticker span {
+.ticker a {
   flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
   padding: 0.85rem 1rem;
   text-align: center;
   border-right: 1px solid var(--line-gold);
   color: var(--text-muted);
-  transition: color 0.25s var(--ease);
+  font-size: 0.68rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  text-decoration: none;
+  transition: color 0.25s var(--ease), background 0.25s var(--ease);
 }
 
-.ticker span:hover {
+.ticker a:hover,
+.ticker a:focus-visible {
   color: var(--gold-light);
+  background: rgba(212, 175, 55, 0.08);
 }
 
-.ticker span:last-child {
+.ticker a:last-child {
   border-right: 0;
 }
 
