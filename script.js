@@ -44,32 +44,140 @@ const vintageRows = [
   },
 ];
 
-function renderMiniChart() {
-  const miniSvg = document.querySelector("[data-sfr-mini-svg]");
-  const miniYears = document.querySelector("[data-sfr-mini-years]");
-  if (!miniSvg || !miniYears) {
+const sfrShareSeries = [
+  {
+    year: 2011,
+    share: 0,
+    estimated: true,
+    headline: "Pre-scale baseline",
+    text: "GAO cites studies finding no investor owned 1,000+ single-family rental homes as of late 2011.",
+  },
+  {
+    year: 2015,
+    share: 1.5,
+    estimated: true,
+    headline: "Post-crisis accumulation",
+    text: "Institutional investors collectively held an estimated 170,000–300,000 homes—roughly 1–2% of single-family rental stock.",
+  },
+  {
+    year: 2018,
+    share: 2.2,
+    estimated: true,
+    headline: "Interpolated growth",
+    text: "Midpoint estimate between GAO-era anchors; labeled estimated for transparency.",
+  },
+  {
+    year: 2022,
+    share: 3.8,
+    estimated: false,
+    headline: "Urban Institute anchor",
+    text: "About 574,000 of 15.1 million U.S. single-family rental homes—about 3.8%—using institutional definitions in that estimate.",
+  },
+  {
+    year: 2024,
+    share: 4.2,
+    estimated: true,
+    headline: "Recent trajectory (estimated)",
+    text: "Illustrative continuation informed by industry reports; not a census count.",
+  },
+];
+
+let activeShareYear = 2022;
+
+function renderSfrShareTimeline() {
+  const root = document.querySelector("[data-sfr-timeline]");
+  if (!root) {
     return;
   }
 
-  const reference = vintageRows.find((row) => row.id === "institutional") ?? vintageRows[0];
-  const points = reference.values.map((value, idx, list) => ({
-    x: (idx / (list.length - 1)) * 280,
-    y: 76 - (value / 50) * 66,
-  }));
+  const svg = root.querySelector("[data-sfr-svg]");
+  const yearButtons = root.querySelector("[data-sfr-years]");
+  const detailYear = root.querySelector("[data-sfr-detail-year]");
+  const detailValue = root.querySelector("[data-sfr-detail-value]");
+  const detailFlag = root.querySelector("[data-sfr-detail-flag]");
+  const detailHeadline = root.querySelector("[data-sfr-detail-headline]");
+  const detailText = root.querySelector("[data-sfr-detail-text]");
 
-  const linePath = points
-    .map((point, index) => `${index === 0 ? "M" : "L"} ${point.x.toFixed(2)} ${point.y.toFixed(2)}`)
-    .join(" ");
-  const areaPath = `M ${points[0].x.toFixed(2)} 76 ${points
-    .map((point) => `L ${point.x.toFixed(2)} ${point.y.toFixed(2)}`)
-    .join(" ")} L ${points[points.length - 1].x.toFixed(2)} 76 Z`;
+  if (!svg || !yearButtons || !detailYear || !detailValue || !detailFlag || !detailHeadline || !detailText) {
+    return;
+  }
 
-  miniSvg.querySelector("[data-sfr-mini-area]").setAttribute("d", areaPath);
-  miniSvg.querySelector("[data-sfr-mini-line]").setAttribute("d", linePath);
-  miniYears.innerHTML = `
-    <span>older stock</span>
-    <span>newer stock</span>
+  const width = 520;
+  const height = 260;
+  const pad = { top: 24, right: 20, bottom: 36, left: 44 };
+  const plotW = width - pad.left - pad.right;
+  const plotH = height - pad.top - pad.bottom;
+  const maxShare = 5.5;
+  const years = sfrShareSeries.map((d) => d.year);
+  const minYear = Math.min(...years);
+  const maxYear = Math.max(...years);
+
+  const x = (year) => pad.left + ((year - minYear) / (maxYear - minYear)) * plotW;
+  const y = (share) => pad.top + plotH - (share / maxShare) * plotH;
+
+  const points = sfrShareSeries.map((d) => ({ ...d, px: x(d.year), py: y(d.share) }));
+  const linePath = points.map((p, i) => `${i === 0 ? "M" : "L"} ${p.px.toFixed(1)} ${p.py.toFixed(1)}`).join(" ");
+  const areaPath = `${linePath} L ${points[points.length - 1].px.toFixed(1)} ${(pad.top + plotH).toFixed(1)} L ${points[0].px.toFixed(1)} ${(pad.top + plotH).toFixed(1)} Z`;
+
+  const gridY = [0, 1, 2, 3, 4, 5].map((v) => {
+    const gy = y(v);
+    return `<line class="sfr-grid-line" x1="${pad.left}" y1="${gy}" x2="${width - pad.right}" y2="${gy}" />`;
+  });
+
+  const gridX = years.map((year) => {
+    const gx = x(year);
+    return `<line class="sfr-grid-line is-vertical" x1="${gx}" y1="${pad.top}" x2="${gx}" y2="${pad.top + plotH}" />`;
+  });
+
+  const eventLines = `
+    <line class="sfr-event-line" x1="${x(2011)}" y1="${pad.top}" x2="${x(2011)}" y2="${pad.top + plotH}" />
+    <text class="sfr-event-text" x="${x(2011) + 4}" y="${pad.top + 12}">Crisis era</text>
+    <line class="sfr-event-line" x1="${x(2022)}" y1="${pad.top}" x2="${x(2022)}" y2="${pad.top + plotH}" />
+    <text class="sfr-event-text" x="${x(2022) + 4}" y="${pad.top + 12}">Urban est.</text>
   `;
+
+  const dots = points
+    .map(
+      (p) =>
+        `<circle class="sfr-focus-dot" data-year="${p.year}" cx="${p.px.toFixed(1)}" cy="${p.py.toFixed(1)}" r="5" />`
+    )
+    .join("");
+
+  const focus = points.find((p) => p.year === activeShareYear) ?? points[points.length - 1];
+
+  svg.innerHTML = `
+    ${gridY.join("")}
+    ${gridX.join("")}
+    <path class="sfr-band" d="${areaPath}" />
+    <path class="sfr-area" d="${areaPath}" />
+    <path class="sfr-line" d="${linePath}" />
+    ${eventLines}
+    <line class="sfr-focus-line" x1="${focus.px}" y1="${pad.top}" x2="${focus.px}" y2="${pad.top + plotH}" />
+    ${dots}
+    <text fill="rgba(17,21,15,0.55)" font-size="10" x="${pad.left - 8}" y="${y(0) + 4}" text-anchor="end">0%</text>
+    <text fill="rgba(17,21,15,0.55)" font-size="10" x="${pad.left - 8}" y="${y(3.8) + 4}" text-anchor="end">~4%</text>
+  `;
+
+  yearButtons.innerHTML = "";
+  sfrShareSeries.forEach((d) => {
+    const btn = document.createElement("button");
+    btn.type = "button";
+    btn.className = `sfr-year-button ${d.year === activeShareYear ? "is-active" : ""}`;
+    btn.textContent = String(d.year);
+    btn.addEventListener("click", () => {
+      activeShareYear = d.year;
+      renderSfrShareTimeline();
+    });
+    yearButtons.append(btn);
+  });
+
+  const active = sfrShareSeries.find((d) => d.year === activeShareYear) ?? sfrShareSeries[0];
+  detailYear.textContent = String(active.year);
+  detailValue.textContent = `${active.share.toFixed(1)}% of U.S. SFR stock`;
+  detailFlag.textContent = active.estimated ? "Estimated" : "Observed anchor";
+  detailFlag.classList.toggle("is-estimated", active.estimated);
+  detailHeadline.textContent = active.headline;
+  detailText.textContent = active.text;
 }
 
 function renderVintageExplorer() {
@@ -207,8 +315,29 @@ function setActiveChapter(chapter) {
   visualTitle.textContent = chapter.dataset.visualTitle;
   visualDescription.textContent = chapter.dataset.visualDescription;
   visualCaption.textContent = chapter.dataset.visualCaption;
-  if (visualStage) {
-    visualStage.classList.toggle("show-sfr-mini", chapter.dataset.visualType === "sfr-timeline");
+
+  if (!visualStage) {
+    return;
+  }
+
+  const visualType = chapter.dataset.visualType || "fragmented";
+  visualStage.classList.remove(
+    "show-sfr-timeline",
+    "show-sfr-mini",
+    "show-process",
+    "show-financing",
+    "show-stress"
+  );
+
+  if (visualType === "sfr-timeline") {
+    visualStage.classList.add("show-sfr-timeline");
+    renderSfrShareTimeline();
+  } else if (visualType === "process") {
+    visualStage.classList.add("show-process");
+  } else if (visualType === "financing") {
+    visualStage.classList.add("show-financing");
+  } else if (visualType === "stress") {
+    visualStage.classList.add("show-stress");
   }
 }
 
@@ -231,4 +360,4 @@ const observer = new IntersectionObserver(
 chapters.forEach((chapter) => observer.observe(chapter));
 
 renderVintageExplorer();
-renderMiniChart();
+renderSfrShareTimeline();

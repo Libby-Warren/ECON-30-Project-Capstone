@@ -1,10 +1,19 @@
-# ECON 30 Project Capstone
+# ECON 30 Project Capstone — The SFR Machine
 
-This repository contains the capstone project work for ECON 30 (Spring 2026).
+Capstone website for ECON 30 (Spring 2026): progress and inequality in institutional single-family rentals.
+
+**Live site:** [https://econ-30-project-capstone.vercel.app/](https://econ-30-project-capstone.vercel.app/)
+
+## Changelog (May 2026)
+
+- Finalized claim (`claim.md`) and research ledger (`research-ledger.md`)
+- Replaced placeholder copy; added story section, SFR share timeline, chapter visuals
+- Data: `data/sfr_institutional_share.csv`, `data/urban_vintage_figure5.csv`
+- Vintage Layers Explorer + institutional share timeline in `script.js`
 
 ## Project Overview
 
-The goal of this project is to analyze an economics-focused question using data, statistical methods, and clear interpretation of results.
+Explain how institutional investors turned scattered single-family rentals into a buy–operate–finance platform—and why national scale, local salience, and mixed evidence make policy contentious.
 
 ## Repository Structure
 

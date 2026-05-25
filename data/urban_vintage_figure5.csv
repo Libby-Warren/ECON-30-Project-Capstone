@@ -1,0 +1,13 @@
+investor_group,cohort,share_pct
+all_institutional_sfr,1950s_and_earlier,11.5
+all_institutional_sfr,1960s_1970s,14.5
+all_institutional_sfr,1980s_1990s,28.2
+all_institutional_sfr,since_2000,45.8
+mega_investors,1950s_and_earlier,7.4
+mega_investors,1960s_1970s,13.5
+mega_investors,1980s_1990s,30.3
+mega_investors,since_2000,48.8
+local_investors,1950s_and_earlier,20.4
+local_investors,1960s_1970s,42.2
+local_investors,1980s_1990s,14.3
+local_investors,since_2000,23.1

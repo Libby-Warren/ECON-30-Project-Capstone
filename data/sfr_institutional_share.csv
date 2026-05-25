@@ -1,0 +1,6 @@
+year,share_pct,source,estimated,notes
+2011,0.0,GAO-24-106643,true,No investor owned 1000+ SFR homes as of late 2011
+2015,1.5,GAO-24-106643,true,Midpoint of ~1-2% share from 170000-300000 homes
+2018,2.2,Interpolated,true,Between GAO-era anchors
+2022,3.8,Urban Institute via Callan 2024,false,574000 of 15.1 million US SFR homes
+2024,4.2,Interpolated,true,Post-2022 trajectory assumption; not observed census
