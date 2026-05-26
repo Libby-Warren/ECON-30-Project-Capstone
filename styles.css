@@ -2480,10 +2480,6 @@ main {
   border-top: 1px solid var(--line);
 }
 
-.conclusion-lens {
-  margin-bottom: 3rem;
-}
-
 .conclusion-lens__header .conclusion-subtitle {
   margin-bottom: 0;
 }
@@ -2555,51 +2551,12 @@ main {
   background: rgba(212, 175, 55, 0.05);
 }
 
-.conclusion-synthesis {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 1px;
-  margin-bottom: 3rem;
-  background: var(--line-gold);
-  border: 1px solid var(--line-gold);
-}
-
-.conclusion-synthesis__card {
-  padding: 1.35rem 1.25rem 1.5rem;
-  background: rgba(0, 0, 0, 0.35);
-  transition: background 0.2s;
-}
-
-.conclusion-synthesis__card:hover {
-  background: rgba(212, 175, 55, 0.1);
-}
-
-.conclusion-synthesis__tag {
-  margin: 0 0 0.65rem;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold-muted);
-}
-
-.conclusion-synthesis__card h4 {
-  margin: 0 0 0.5rem;
-  font-family: var(--font-display);
-  font-size: 1.15rem;
-  font-weight: 400;
-  color: var(--gold-light);
-}
-
-.conclusion-synthesis__card p {
-  margin: 0;
-  font-size: 0.88rem;
-  line-height: 1.55;
-  color: var(--text-soft);
+.conclusion-lens {
+  margin-bottom: 2rem;
 }
 
 .conclusion-tradeoffs {
-  padding-top: 2.5rem;
+  padding-top: 2rem;
   border-top: 1px solid var(--line-gold);
 }
 
@@ -2799,8 +2756,7 @@ main {
   .narrative-arc,
   .interactive-cards,
   .progress-grid,
-  .limits-grid,
-  .conclusion-synthesis {
+  .limits-grid {
     grid-template-columns: 1fr;
   }
 
