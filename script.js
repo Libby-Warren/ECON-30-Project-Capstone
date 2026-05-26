@@ -357,7 +357,9 @@ const observer = new IntersectionObserver(
   }
 );
 
-chapters.forEach((chapter) => observer.observe(chapter));
+if (chapters.length && visualTitle) {
+  chapters.forEach((chapter) => observer.observe(chapter));
+}
 
 function initNavigation() {
   const menuToggle = document.querySelector(".menu-toggle");
@@ -397,8 +399,9 @@ function initNavigation() {
     "story",
     "mission",
     "platform",
-    "research",
     "interactives",
+    "lab-national-dot",
+    "vintage",
     "progress",
     "takeaways",
     "sources",
@@ -407,15 +410,15 @@ function initNavigation() {
     question: 0,
     story: 1,
     mission: 2,
-    research: 3,
-    platform: 4,
-    interactives: 5,
-    vintage: 5,
-    progress: 6,
-    takeaways: 7,
-    limits: 7,
-    sources: 8,
-    about: 8,
+    platform: 3,
+    interactives: 4,
+    vintage: 4,
+    "lab-national-dot": 4,
+    progress: 5,
+    takeaways: 6,
+    limits: 6,
+    sources: 7,
+    about: 7,
   };
 
   const panelLinks = document.querySelectorAll(".explore-panel a");
