@@ -2484,12 +2484,12 @@ main {
   margin-bottom: 3rem;
 }
 
-.conclusion-lens__intro {
-  margin: 0.75rem 0 0;
-  max-width: 52ch;
-  font-size: 0.95rem;
-  color: var(--text-soft);
-  line-height: 1.6;
+.conclusion-lens__header .conclusion-subtitle {
+  margin-bottom: 0;
+}
+
+.conclusion-lens .progress-ledger {
+  margin-top: 1rem;
 }
 
 .progress-ledger {
