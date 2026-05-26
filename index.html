@@ -300,26 +300,85 @@
           </figure>
         </div>
 
-        <div class="comparison-callout" aria-label="Key comparison since 2000">
-          <p class="eyebrow">Original comparison</p>
-          <h3>Since 2000: who holds newer stock?</h3>
-          <div class="comparison-bars">
-            <div class="comparison-row">
-              <span>Institutional SFR</span>
-              <div class="comparison-track"><span style="width:45.8%">45.8%</span></div>
-            </div>
-            <div class="comparison-row">
-              <span>Mega investors</span>
-              <div class="comparison-track"><span style="width:48.8%">48.8%</span></div>
-            </div>
-            <div class="comparison-row">
-              <span>Local investors</span>
-              <div class="comparison-track"><span class="is-local" style="width:23.1%">23.1%</span></div>
-            </div>
+        <div
+          class="comparison-callout"
+          aria-labelledby="comparison-heading"
+          aria-describedby="comparison-lead comparison-note"
+        >
+          <p class="eyebrow">Portfolio makeup</p>
+          <h3 id="comparison-heading">Each investor type holds a different mix of home ages</h3>
+          <p id="comparison-lead" class="comparison-lead">
+            This is <strong>not</strong> who owns most rentals nationally. It is how the homes inside
+            <em>each group’s own portfolio</em> split between post-2000 construction and older stock—in
+            the 20 largest metro areas (2021). That supports the buy–operate–finance story above: large
+            platforms often target newer homes that are easier to renovate and run at scale.
+          </p>
+          <p class="comparison-takeaway" role="note">
+            <span class="comparison-takeaway-label">Chapter takeaway</span>
+            National ownership can stay small while institutional operators still concentrate on a
+            particular kind of housing.
+          </p>
+          <p class="comparison-chart-title">Within each group’s portfolio: homes built since 2000</p>
+          <div class="comparison-legend" aria-hidden="true">
+            <span><i class="comparison-swatch is-new"></i> Built 2000 or later</span>
+            <span><i class="comparison-swatch is-old"></i> Built before 2000</span>
           </div>
-          <p class="comparison-note">
-            Urban Institute Figure 5 (2021, 20 largest MSAs)—share of each group’s portfolio built since 2000.
-            Explore the metro contrast in <a href="#interactives">the interactive</a>.
+          <div class="comparison-bars">
+            <article class="comparison-row">
+              <div class="comparison-row-labels">
+                <strong class="comparison-row-name">Institutional SFR</strong>
+                <span class="comparison-row-def">All institutional single-family rentals</span>
+              </div>
+              <div
+                class="comparison-stacked"
+                role="img"
+                aria-label="Institutional SFR portfolio: 45.8 percent built since 2000, 54.2 percent older"
+              >
+                <span class="comparison-seg is-new" style="width: 45.8%">45.8%</span>
+                <span class="comparison-seg is-old" style="width: 54.2%" aria-hidden="true"></span>
+              </div>
+              <p class="comparison-row-readout">Nearly half of this portfolio is newer stock.</p>
+            </article>
+            <article class="comparison-row">
+              <div class="comparison-row-labels">
+                <strong class="comparison-row-name">Mega investors</strong>
+                <span class="comparison-row-def">Largest aggregators (subset of institutional)</span>
+              </div>
+              <div
+                class="comparison-stacked"
+                role="img"
+                aria-label="Mega investor portfolio: 48.8 percent built since 2000, 51.2 percent older"
+              >
+                <span class="comparison-seg is-new" style="width: 48.8%">48.8%</span>
+                <span class="comparison-seg is-old" style="width: 51.2%" aria-hidden="true"></span>
+              </div>
+              <p class="comparison-row-readout">Highest tilt toward post-2000 homes.</p>
+            </article>
+            <article class="comparison-row">
+              <div class="comparison-row-labels">
+                <strong class="comparison-row-name">Local investors</strong>
+                <span class="comparison-row-def">Smaller, locally oriented owners</span>
+              </div>
+              <div
+                class="comparison-stacked"
+                role="img"
+                aria-label="Local investor portfolio: 23.1 percent built since 2000, 76.9 percent older"
+              >
+                <span class="comparison-seg is-new is-local" style="width: 23.1%">23.1%</span>
+                <span class="comparison-seg is-old" style="width: 76.9%" aria-hidden="true"></span>
+              </div>
+              <p class="comparison-row-readout">Mostly older homes—about three in four pre-2000.</p>
+            </article>
+          </div>
+          <p class="comparison-gap">
+            Gap: institutional and mega portfolios are roughly
+            <strong>22–26 points</strong> more concentrated in post-2000 homes than local portfolios.
+          </p>
+          <p id="comparison-note" class="comparison-note">
+            Source: Urban Institute, Figure 5 (2021, 20 largest MSAs). Each bar is one investor
+            group’s portfolio and sums to 100%—not market share.
+            <a href="#vintage">Open the full vintage breakdown</a> or
+            <a href="#interactives">metro concentration interactive</a>.
           </p>
         </div>
       </section>
