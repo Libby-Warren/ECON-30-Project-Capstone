@@ -200,20 +200,8 @@ function renderVintageExplorer() {
   const chartContainer = explorer.querySelector("[data-vintage-chart]");
   const chartFocus = explorer.querySelector("[data-vintage-chart-focus]");
   const modeButtons = Array.from(explorer.querySelectorAll("[data-vintage-mode]"));
-  const detailGroup = explorer.querySelector("[data-vintage-detail-group]");
-  const detailFocus = explorer.querySelector("[data-vintage-detail-focus]");
-  const detailHeadline = explorer.querySelector("[data-vintage-detail-headline]");
-  const detailText = explorer.querySelector("[data-vintage-detail-text]");
 
-  if (
-    !cohortButtonsContainer ||
-    !chartContainer ||
-    !chartFocus ||
-    !detailGroup ||
-    !detailFocus ||
-    !detailHeadline ||
-    !detailText
-  ) {
+  if (!cohortButtonsContainer || !chartContainer || !chartFocus) {
     return;
   }
 
@@ -233,20 +221,8 @@ function renderVintageExplorer() {
     chartFocus.textContent = `${focusValue.toFixed(1)}% of ${subject} ${vintageCohortBuiltPhrase(cohort)}`;
   }
 
-  function updateDetail() {
-    const row = getActiveRow();
-    const cohort = vintageCohorts[selectedCohortIndex];
-    const focusValue = row.values[selectedCohortIndex];
-    const newerBias = row.values[3] - row.values[0];
-
+  function updateVintageFocus() {
     updateChartFocus();
-    detailGroup.textContent = row.label;
-    detailFocus.textContent = `${cohort.short}: ${focusValue.toFixed(1)}%`;
-    detailHeadline.textContent =
-      newerBias >= 0 ? "Leans toward newer built stock" : "Leans toward older built stock";
-    detailText.textContent = `Difference between Since 2000 and 1950s-and-earlier cohorts: ${
-      newerBias >= 0 ? "+" : ""
-    }${newerBias.toFixed(1)} percentage points.`;
   }
 
   function renderCohortButtons() {
@@ -308,12 +284,12 @@ function renderVintageExplorer() {
       stackButton.addEventListener("click", () => {
         activeRowId = row.id;
         renderRows();
-        updateDetail();
+        updateVintageFocus();
       });
       stackButton.addEventListener("mouseenter", () => {
         activeRowId = row.id;
         renderRows();
-        updateDetail();
+        updateVintageFocus();
       });
 
       rowEl.append(head, stackButton);
@@ -321,7 +297,7 @@ function renderVintageExplorer() {
     });
 
     renderCohortButtons();
-    updateDetail();
+    updateVintageFocus();
   }
 
   modeButtons.forEach((button) => {
