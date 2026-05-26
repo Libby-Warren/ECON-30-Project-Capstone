@@ -673,11 +673,23 @@ main {
 }
 
 /* Mission layout: full-width narrative, then terms + image */
+.mission-section .panel-intro {
+  max-width: none;
+  margin-top: 1.15rem;
+}
+
+@media (min-width: 980px) {
+  .mission-section .panel-intro {
+    column-count: 2;
+    column-gap: clamp(2rem, 4vw, 3.25rem);
+  }
+}
+
 .mission-row-2 {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
   gap: clamp(1.5rem, 4vw, 3rem);
-  margin-top: 1.25rem;
+  margin-top: 0.85rem;
   align-items: start;
 }
 
