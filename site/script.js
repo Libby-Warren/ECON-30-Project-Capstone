@@ -418,7 +418,6 @@ function initNavigation() {
     takeaways: 6,
     limits: 6,
     sources: 7,
-    about: 7,
   };
 
   const panelLinks = document.querySelectorAll(".explore-panel a");
