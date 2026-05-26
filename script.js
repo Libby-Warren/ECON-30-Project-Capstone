@@ -403,8 +403,8 @@ function initNavigation() {
     "interactives",
     "lab-national-dot",
     "vintage",
-    "progress",
-    "takeaways",
+    "conclusion",
+    "limits",
     "sources",
   ];
   const navMap = {
@@ -415,10 +415,11 @@ function initNavigation() {
     interactives: 4,
     vintage: 4,
     "lab-national-dot": 4,
+    conclusion: 5,
+    limits: 5,
     progress: 5,
-    takeaways: 6,
-    limits: 6,
-    sources: 7,
+    takeaways: 5,
+    sources: 6,
   };
 
   const panelLinks = document.querySelectorAll(".explore-panel a");
