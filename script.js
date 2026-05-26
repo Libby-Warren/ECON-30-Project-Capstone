@@ -188,13 +188,22 @@ function renderVintageExplorer() {
 
   const cohortButtonsContainer = explorer.querySelector("[data-vintage-cohorts]");
   const chartContainer = explorer.querySelector("[data-vintage-chart]");
+  const chartFocus = explorer.querySelector("[data-vintage-chart-focus]");
   const modeButtons = Array.from(explorer.querySelectorAll("[data-vintage-mode]"));
   const detailGroup = explorer.querySelector("[data-vintage-detail-group]");
   const detailFocus = explorer.querySelector("[data-vintage-detail-focus]");
   const detailHeadline = explorer.querySelector("[data-vintage-detail-headline]");
   const detailText = explorer.querySelector("[data-vintage-detail-text]");
 
-  if (!cohortButtonsContainer || !chartContainer || !detailGroup || !detailFocus || !detailHeadline || !detailText) {
+  if (
+    !cohortButtonsContainer ||
+    !chartContainer ||
+    !chartFocus ||
+    !detailGroup ||
+    !detailFocus ||
+    !detailHeadline ||
+    !detailText
+  ) {
     return;
   }
 
@@ -206,12 +215,20 @@ function renderVintageExplorer() {
     return vintageRows.find((row) => row.id === activeRowId) ?? vintageRows[0];
   }
 
+  function updateChartFocus() {
+    const row = getActiveRow();
+    const cohort = vintageCohorts[selectedCohortIndex];
+    const focusValue = row.values[selectedCohortIndex];
+    chartFocus.textContent = `${cohort.short}: ${focusValue.toFixed(1)}%`;
+  }
+
   function updateDetail() {
     const row = getActiveRow();
     const cohort = vintageCohorts[selectedCohortIndex];
     const focusValue = row.values[selectedCohortIndex];
     const newerBias = row.values[3] - row.values[0];
 
+    updateChartFocus();
     detailGroup.textContent = row.label;
     detailFocus.textContent = `${cohort.short}: ${focusValue.toFixed(1)}%`;
     detailHeadline.textContent =
@@ -255,10 +272,7 @@ function renderVintageExplorer() {
 
       const head = document.createElement("div");
       head.className = "vintage-row-head";
-      head.innerHTML = `
-        <h3>${row.label}</h3>
-        <p>${row.values[selectedCohortIndex].toFixed(1)}% in ${vintageCohorts[selectedCohortIndex].short}</p>
-      `;
+      head.innerHTML = `<h3>${row.label}</h3>`;
 
       const stackButton = document.createElement("button");
       stackButton.type = "button";

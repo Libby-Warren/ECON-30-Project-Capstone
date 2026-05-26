@@ -1291,10 +1291,38 @@ main {
   margin-bottom: 1.5rem;
 }
 
+.vintage-cohort-group {
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+}
+
+.vintage-cohort-label {
+  margin: 0;
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--gold-dark);
+}
+
 .vintage-cohorts {
   display: flex;
   flex-wrap: wrap;
   gap: 0.35rem;
+}
+
+.vintage-chart-focus {
+  margin: 0 0 0.75rem;
+  padding: 0.5rem 0 0;
+  border-top: 1px solid rgba(138, 109, 46, 0.2);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--gold-rich);
+}
+
+.report-panel--light .vintage-chart-focus {
+  color: var(--gold-dark);
 }
 
 .vintage-cohort,
@@ -1341,10 +1369,7 @@ main {
 }
 
 .vintage-row-head {
-  display: flex;
-  justify-content: space-between;
-  gap: 1rem;
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.35rem;
 }
 
 .vintage-row-head h3 {

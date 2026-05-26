@@ -533,7 +533,10 @@
           <p class="interactive-badge interactive-badge--light">Interactive insight 2</p>
           <div class="vintage-explorer" data-vintage-explorer>
             <div class="vintage-controls">
-              <div class="vintage-cohorts" data-vintage-cohorts></div>
+              <div class="vintage-cohort-group">
+                <p class="vintage-cohort-label">When house was built</p>
+                <div class="vintage-cohorts" data-vintage-cohorts></div>
+              </div>
               <div class="vintage-order" role="group" aria-label="Sort mode">
                 <button type="button" class="vintage-mode is-active" data-vintage-mode="default">
                   Original order
@@ -543,6 +546,7 @@
                 </button>
               </div>
             </div>
+            <p class="vintage-chart-focus" data-vintage-chart-focus aria-live="polite"></p>
             <div class="vintage-chart" data-vintage-chart></div>
             <article class="vintage-detail" aria-live="polite">
               <div class="sfr-detail-meta">
