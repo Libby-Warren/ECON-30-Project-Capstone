@@ -772,6 +772,10 @@ main {
 }
 
 /* —— Platform —— */
+.platform-section {
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+
 .platform-section .section-heading {
   max-width: var(--content-flow);
   margin-bottom: 3rem;
@@ -2439,6 +2443,7 @@ main {
 
 /* ——— Chapter 3 showcase labs ——— */
 .showcase-hub {
+  padding-top: clamp(2.5rem, 6vw, 4rem);
   border-bottom: 1px solid var(--line-gold);
 }
 
