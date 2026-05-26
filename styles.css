@@ -1778,14 +1778,6 @@ main {
   transform: scale(1.04);
 }
 
-.photo-gallery figcaption {
-  margin: 0;
-  padding: 0.65rem 0.85rem;
-  font-size: 0.72rem;
-  color: var(--text-muted);
-  line-height: 1.4;
-}
-
 .visual-stage-photo {
   margin: 1.25rem 0 0;
   border: 1px solid var(--line-gold);
