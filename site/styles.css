@@ -672,6 +672,23 @@ main {
   box-shadow: var(--shadow-gold);
 }
 
+/* Mission layout: full-width narrative, then terms + image */
+.mission-row-2 {
+  display: grid;
+  grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
+  gap: clamp(1.5rem, 4vw, 3rem);
+  margin-top: 1.25rem;
+  align-items: start;
+}
+
+.mission-row-2 .definition-box {
+  margin-top: 0;
+}
+
+.mission-figure {
+  margin: 0;
+}
+
 .report-panel--light .definition-box {
   border-color: rgba(138, 109, 46, 0.25);
   border-left-color: var(--gold-rich);
@@ -3449,6 +3466,15 @@ main {
 
   .dot-eras {
     grid-template-columns: repeat(2, 1fr);
+  }
+
+  .mission-row-2 {
+    grid-template-columns: 1fr;
+  }
+
+  /* Mobile stacking: Narrative, then image, then Key Terms */
+  .mission-row-2 .mission-figure {
+    order: -1;
   }
 }
 
