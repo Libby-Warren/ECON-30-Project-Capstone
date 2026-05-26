@@ -2555,67 +2555,8 @@ main {
   margin-bottom: 2rem;
 }
 
-.conclusion-tradeoffs {
-  padding-top: 2rem;
-  border-top: 1px solid var(--line-gold);
-}
-
-.tradeoff-deck {
-  display: grid;
-  gap: 1rem;
-  margin-top: 1.5rem;
-}
-
-.tradeoff-card {
-  border: 1px solid var(--line-gold);
-  background: rgba(0, 0, 0, 0.28);
-  transition: border-color 0.2s, box-shadow 0.2s;
-}
-
-.tradeoff-card:hover {
-  border-color: var(--gold-muted);
-  box-shadow: 0 0 24px rgba(212, 175, 55, 0.08);
-}
-
-.tradeoff-card__sides {
-  display: grid;
-  grid-template-columns: 1fr 3px 1fr;
-  gap: 0;
-}
-
-.tradeoff-card__hold {
-  background: var(--gold-gradient);
-  opacity: 0.85;
-}
-
-.tradeoff-card__counter,
-.tradeoff-card__response {
-  padding: 1.15rem 1.2rem;
-}
-
-.tradeoff-card__label {
-  margin: 0 0 0.45rem;
-  font-size: 0.62rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold-muted);
-}
-
-.tradeoff-card__counter p:last-child,
-.tradeoff-card__response p:last-child {
-  margin: 0;
-  font-size: 0.9rem;
-  line-height: 1.55;
-  color: var(--text-soft);
-}
-
-.tradeoff-card__response {
-  background: rgba(212, 175, 55, 0.06);
-}
-
 .conclusion-closer {
-  margin-top: 3rem;
+  margin-top: 2rem;
   padding: 2.25rem 2rem 2.5rem;
   text-align: center;
   border: 1px solid var(--line-gold);
@@ -2769,15 +2710,6 @@ main {
 
   .conclusion-mast__copy {
     padding: 1.5rem 1.25rem 1.75rem;
-  }
-
-  .tradeoff-card__sides {
-    grid-template-columns: 1fr;
-  }
-
-  .tradeoff-card__hold {
-    height: 3px;
-    width: 100%;
   }
 
   .progress-ledger__item {

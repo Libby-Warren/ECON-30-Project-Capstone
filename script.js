@@ -404,7 +404,6 @@ function initNavigation() {
     "lab-national-dot",
     "vintage",
     "conclusion",
-    "limits",
     "sources",
   ];
   const navMap = {
