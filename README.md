@@ -8,7 +8,7 @@ Capstone website for ECON 30 (Spring 2026): progress and inequality in instituti
 
 - Finalized claim (`claim.md`) and research ledger (`research-ledger.md`)
 - Replaced placeholder copy; added story section, SFR share timeline, chapter visuals
-- Data: `data/sfr_institutional_share.csv`, `data/urban_vintage_figure5.csv`
+- Data: `data/sfr_institutional_share_extended.csv` (2001–2024, documented series), `data/sfr_institutional_share.csv` (chart anchors), `data/urban_vintage_figure5.csv`, `data/DATA_SOURCES.md`
 - Vintage Layers Explorer + institutional share timeline in `script.js`
 - Aligned to ECON 30 capstone rubric: research question, narrative arc, progress lens, interactive guides, limits/counterpoints, about capstone block
 
