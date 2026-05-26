@@ -1441,6 +1441,10 @@ main {
 }
 
 /* —— Takeaways —— */
+.takeaway-section .takeaway-grid {
+  margin-top: 1.75rem;
+}
+
 .takeaway-grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
@@ -1911,11 +1915,20 @@ main {
   line-height: 1.55;
 }
 
+.story-section {
+  padding-bottom: clamp(2.5rem, 6vw, 4rem);
+}
+
+.mission-section {
+  padding-top: clamp(2.5rem, 6vw, 4rem);
+}
+
 .narrative-arc {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
   gap: 1px;
   margin-top: 3rem;
+  margin-bottom: 0;
   background: var(--line-gold);
   border: 1px solid var(--line-gold);
 }
@@ -1946,20 +1959,6 @@ main {
   margin: 0;
   font-size: 0.9rem;
   color: var(--text-soft);
-}
-
-.memorable-line {
-  margin: 2rem 0 0;
-  padding: 1rem 1.15rem;
-  border-left: 3px solid var(--gold);
-  background: var(--gold-glow);
-  font-size: 1rem;
-  color: var(--text-soft);
-}
-
-.memorable-line--dark {
-  background: rgba(212, 175, 55, 0.1);
-  border-left-color: var(--gold);
 }
 
 .contribution-box {
