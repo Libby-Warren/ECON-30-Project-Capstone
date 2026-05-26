@@ -672,17 +672,11 @@ main {
   box-shadow: var(--shadow-gold);
 }
 
-/* Mission layout: full-width narrative, then terms + image */
+/* Mission layout: narrative block on top, terms + image underneath */
 .mission-section .panel-intro {
-  max-width: none;
-  margin-top: 1.15rem;
-}
-
-@media (min-width: 980px) {
-  .mission-section .panel-intro {
-    column-count: 2;
-    column-gap: clamp(2rem, 4vw, 3.25rem);
-  }
+  max-width: min(72ch, 100%);
+  margin-top: 1rem;
+  margin-bottom: 0;
 }
 
 .mission-row-2 {
