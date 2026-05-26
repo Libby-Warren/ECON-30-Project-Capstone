@@ -15,34 +15,44 @@ const vintageRows = [
   {
     id: "all_sfr",
     label: "All single-family rental properties in 20 largest MSAs (2021)",
+    focusSubject: "all single-family rental properties in the 20 largest MSAs",
     values: [22.5, 23.9, 25.6, 28.1],
   },
   {
     id: "all_rental",
     label: "All rental properties in 20 largest MSAs (2021)",
+    focusSubject: "all rental properties in the 20 largest MSAs",
     values: [13.7, 24.2, 29.8, 32.3],
   },
   {
     id: "institutional",
     label: "All institutional SFR properties",
+    focusSubject: "all institutionally-owned SFR properties",
     values: [11.5, 14.5, 28.2, 45.8],
   },
   {
     id: "mega",
     label: "SFR properties owned by mega investors",
+    focusSubject: "SFR properties owned by mega investors",
     values: [7.4, 13.5, 30.3, 48.8],
   },
   {
     id: "smaller",
     label: "SFR properties owned by smaller investors",
+    focusSubject: "SFR properties owned by smaller institutional investors",
     values: [9.0, 30.7, 22.3, 38.0],
   },
   {
     id: "local",
     label: "SFR properties owned by local investors",
+    focusSubject: "SFR properties owned by local investors",
     values: [20.4, 42.2, 14.3, 23.1],
   },
 ];
+
+function vintageCohortBuiltPhrase(cohort) {
+  return cohort.id === "since_2000" ? "were built since 2000" : `were built in ${cohort.short}`;
+}
 
 const sfrShareSeries = [
   {
@@ -219,7 +229,8 @@ function renderVintageExplorer() {
     const row = getActiveRow();
     const cohort = vintageCohorts[selectedCohortIndex];
     const focusValue = row.values[selectedCohortIndex];
-    chartFocus.textContent = `${cohort.short}: ${focusValue.toFixed(1)}%`;
+    const subject = row.focusSubject ?? row.label;
+    chartFocus.textContent = `${focusValue.toFixed(1)}% of ${subject} ${vintageCohortBuiltPhrase(cohort)}`;
   }
 
   function updateDetail() {
