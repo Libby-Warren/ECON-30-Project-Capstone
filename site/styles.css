@@ -664,7 +664,7 @@ main {
 
 /* —— Definition box —— */
 .definition-box {
-  margin-top: 3rem;
+  margin-top: 2rem;
   padding: 2rem 2rem 2rem 2.25rem;
   border: 1px solid var(--line-gold);
   border-left: 3px solid var(--gold);
@@ -1647,7 +1647,7 @@ main {
   display: grid;
   grid-template-columns: minmax(0, 1.1fr) minmax(260px, 0.9fr);
   gap: clamp(1.5rem, 4vw, 3rem);
-  margin-top: 2rem;
+  margin-top: 1.25rem;
   align-items: start;
 }
 
