@@ -507,7 +507,89 @@ function initPlatformTech() {
   });
 }
 
+function initPolicyExplorer() {
+  const root = document.querySelector("[data-policy-explorer]");
+  if (!root) {
+    return;
+  }
+
+  function wireTabGroup({ tabAttr, panelAttr, tabSelector, panelSelector }) {
+    const tabs = Array.from(root.querySelectorAll(tabSelector));
+    const panels = Array.from(root.querySelectorAll(panelSelector));
+    if (!tabs.length || !panels.length) {
+      return;
+    }
+
+    function activateTab(tab) {
+      const id = tab.getAttribute(tabAttr);
+      tabs.forEach((item) => {
+        const isActive = item === tab;
+        item.classList.toggle("is-active", isActive);
+        item.setAttribute("aria-selected", isActive ? "true" : "false");
+        item.tabIndex = isActive ? 0 : -1;
+      });
+      panels.forEach((panel) => {
+        const isActive = panel.getAttribute(panelAttr) === id;
+        panel.classList.toggle("is-active", isActive);
+        panel.hidden = !isActive;
+      });
+    }
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => activateTab(tab));
+      tab.addEventListener("keydown", (event) => {
+        const index = tabs.indexOf(tab);
+        let next = null;
+        if (event.key === "ArrowRight" || event.key === "ArrowDown") {
+          next = tabs[(index + 1) % tabs.length];
+        } else if (event.key === "ArrowLeft" || event.key === "ArrowUp") {
+          next = tabs[(index - 1 + tabs.length) % tabs.length];
+        } else if (event.key === "Home") {
+          next = tabs[0];
+        } else if (event.key === "End") {
+          next = tabs[tabs.length - 1];
+        }
+        if (!next) {
+          return;
+        }
+        event.preventDefault();
+        activateTab(next);
+        next.focus();
+      });
+    });
+  }
+
+  wireTabGroup({
+    tabAttr: "data-policy-tab",
+    panelAttr: "data-policy-panel",
+    tabSelector: "[data-policy-tab]",
+    panelSelector: "[data-policy-panel]",
+  });
+
+  wireTabGroup({
+    tabAttr: "data-stake",
+    panelAttr: "data-stake-panel",
+    tabSelector: "[data-stake]",
+    panelSelector: "[data-stake-panel]",
+  });
+
+  wireTabGroup({
+    tabAttr: "data-tool",
+    panelAttr: "data-tool-panel",
+    tabSelector: "[data-tool]",
+    panelSelector: "[data-tool-panel]",
+  });
+
+  wireTabGroup({
+    tabAttr: "data-proposal",
+    panelAttr: "data-proposal-panel",
+    tabSelector: "[data-proposal]",
+    panelSelector: "[data-proposal-panel]",
+  });
+}
+
 initNavigation();
 initPlatformTech();
+initPolicyExplorer();
 renderVintageExplorer();
 renderSfrShareTimeline();
