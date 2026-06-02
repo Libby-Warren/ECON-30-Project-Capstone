@@ -84,4 +84,4 @@ This structure helps separate exploratory work from final reproducible code.
 
 ## Status
 
-Project setup in progress.
+Submitted Spring 2026. **Live site:** [https://econ-30-project-capstone.vercel.app/](https://econ-30-project-capstone.vercel.app/)
