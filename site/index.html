@@ -264,47 +264,136 @@
           </article>
         </div>
 
-        <div class="platform-tech" id="platform-tech" aria-labelledby="platform-tech-heading">
+        <div class="platform-tech" id="platform-tech" data-platform-tech aria-labelledby="platform-tech-heading">
           <p class="eyebrow">Enabling technology</p>
           <h3 id="platform-tech-heading">Tools that reduced friction in buy, operate, and finance</h3>
           <p class="platform-tech-intro">
-            Institutional SFR scaled when scattered homes could be acquired, run, and funded like a portfolio.
-            These tools lowered search, management, and capital-recycling costs after the crisis. Examples below
-            are illustrative, not exhaustive.
+            Select a layer to see example tools. Illustrative only, not an exhaustive list.
           </p>
-          <ul class="platform-tech-list">
-            <li>
-              <strong>Acquire.</strong>
-              <a href="https://www.roofstock.com/" target="_blank" rel="noopener noreferrer">Roofstock</a>
-              (turnkey SFR marketplace),
-              <a href="https://www.auction.com/" target="_blank" rel="noopener noreferrer">Auction.com</a>
-              (distressed and bulk sales), plus MLS and property-data vendors such as
-              <a href="https://www.corelogic.com/" target="_blank" rel="noopener noreferrer">CoreLogic</a>
-              for records and valuations.
-            </li>
-            <li>
-              <strong>Operate.</strong>
-              Enterprise property-management platforms
-              (<a href="https://www.yardi.com/" target="_blank" rel="noopener noreferrer">Yardi</a>,
-              <a href="https://www.appfolio.com/" target="_blank" rel="noopener noreferrer">AppFolio</a>,
-              <a href="https://www.realpage.com/" target="_blank" rel="noopener noreferrer">RealPage</a>)
-              centralize leasing, maintenance, and accounting across many addresses.
-            </li>
-            <li>
-              <strong>Finance.</strong>
-              Rental securitization and REIT-style vehicles recycle capital into more acquisitions (see
-              <a href="#sources">Sources</a>;
-              <a href="https://www.gao.gov/products/gao-24-106643" target="_blank" rel="noopener noreferrer">GAO-24-106643</a>
-              discusses institutional financing).
-            </li>
-            <li>
-              <strong>Large operators.</strong>
-              <a href="https://www.invitationhomes.com/" target="_blank" rel="noopener noreferrer">Invitation Homes</a>
-              and
-              <a href="https://www.americanhomes4rent.com/" target="_blank" rel="noopener noreferrer">American Homes 4 Rent</a>
-              built internal systems at portfolio scale, not only third-party software.
-            </li>
-          </ul>
+          <div class="platform-tech-tabs" role="tablist" aria-label="Technology layers">
+            <button
+              type="button"
+              class="platform-tech-tab is-active"
+              role="tab"
+              id="tech-tab-acquire"
+              aria-selected="true"
+              aria-controls="tech-panel-acquire"
+              data-tech-tab="acquire"
+            >
+              <span class="platform-tech-tab__num">01</span>
+              Acquire
+            </button>
+            <button
+              type="button"
+              class="platform-tech-tab"
+              role="tab"
+              id="tech-tab-operate"
+              aria-selected="false"
+              aria-controls="tech-panel-operate"
+              data-tech-tab="operate"
+            >
+              <span class="platform-tech-tab__num">02</span>
+              Operate
+            </button>
+            <button
+              type="button"
+              class="platform-tech-tab"
+              role="tab"
+              id="tech-tab-finance"
+              aria-selected="false"
+              aria-controls="tech-panel-finance"
+              data-tech-tab="finance"
+            >
+              <span class="platform-tech-tab__num">03</span>
+              Finance
+            </button>
+            <button
+              type="button"
+              class="platform-tech-tab"
+              role="tab"
+              id="tech-tab-operators"
+              aria-selected="false"
+              aria-controls="tech-panel-operators"
+              data-tech-tab="operators"
+            >
+              <span class="platform-tech-tab__num">04</span>
+              Operators
+            </button>
+          </div>
+          <div class="platform-tech-stage">
+            <article
+              class="platform-tech-panel is-active"
+              id="tech-panel-acquire"
+              role="tabpanel"
+              aria-labelledby="tech-tab-acquire"
+              data-tech-panel="acquire"
+            >
+              <p class="platform-tech-panel__text">
+                Marketplaces and data cut search and underwriting costs so buyers could add homes remotely at
+                portfolio scale.
+              </p>
+              <div class="platform-tech-chips" aria-label="Acquire examples">
+                <a class="platform-tech-chip" href="https://www.roofstock.com/" target="_blank" rel="noopener noreferrer">Roofstock</a>
+                <a class="platform-tech-chip" href="https://www.auction.com/" target="_blank" rel="noopener noreferrer">Auction.com</a>
+                <a class="platform-tech-chip" href="https://www.corelogic.com/" target="_blank" rel="noopener noreferrer">CoreLogic</a>
+              </div>
+              <p class="platform-tech-chip-note">Also: MLS feeds and automated valuation models (AVMs).</p>
+            </article>
+            <article
+              class="platform-tech-panel"
+              id="tech-panel-operate"
+              role="tabpanel"
+              aria-labelledby="tech-tab-operate"
+              data-tech-panel="operate"
+              hidden
+            >
+              <p class="platform-tech-panel__text">
+                Property-management software centralizes leasing, work orders, and accounting across thousands of
+                scattered addresses.
+              </p>
+              <div class="platform-tech-chips" aria-label="Operate examples">
+                <a class="platform-tech-chip" href="https://www.yardi.com/" target="_blank" rel="noopener noreferrer">Yardi</a>
+                <a class="platform-tech-chip" href="https://www.appfolio.com/" target="_blank" rel="noopener noreferrer">AppFolio</a>
+                <a class="platform-tech-chip" href="https://www.realpage.com/" target="_blank" rel="noopener noreferrer">RealPage</a>
+              </div>
+              <p class="platform-tech-chip-note">Standardized turns, vendors, and leasing workflows at scale.</p>
+            </article>
+            <article
+              class="platform-tech-panel"
+              id="tech-panel-finance"
+              role="tabpanel"
+              aria-labelledby="tech-tab-finance"
+              data-tech-panel="finance"
+              hidden
+            >
+              <p class="platform-tech-panel__text">
+                Securitization and fund structures recycle rent streams into new acquisitions; returns track rates
+                and rent growth.
+              </p>
+              <div class="platform-tech-chips" aria-label="Finance examples">
+                <a class="platform-tech-chip" href="https://www.gao.gov/products/gao-24-106643" target="_blank" rel="noopener noreferrer">GAO-24-106643</a>
+                <a class="platform-tech-chip" href="#sources">Sources on methods</a>
+              </div>
+              <p class="platform-tech-chip-note">SFR rental bonds and REIT reporting treat homes as one asset pool.</p>
+            </article>
+            <article
+              class="platform-tech-panel"
+              id="tech-panel-operators"
+              role="tabpanel"
+              aria-labelledby="tech-tab-operators"
+              data-tech-panel="operators"
+              hidden
+            >
+              <p class="platform-tech-panel__text">
+                Large owners built internal operating systems at portfolio scale, not only third-party apps.
+              </p>
+              <div class="platform-tech-chips" aria-label="Operator examples">
+                <a class="platform-tech-chip" href="https://www.invitationhomes.com/" target="_blank" rel="noopener noreferrer">Invitation Homes</a>
+                <a class="platform-tech-chip" href="https://www.americanhomes4rent.com/" target="_blank" rel="noopener noreferrer">American Homes 4 Rent</a>
+              </div>
+              <p class="platform-tech-chip-note">National platforms in Sunbelt-heavy markets post-crisis.</p>
+            </article>
+          </div>
           <p class="platform-tech-note">
             Named products and firms are for reader orientation only, not endorsement.
           </p>

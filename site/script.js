@@ -458,6 +458,54 @@ function initNavigation() {
   });
 }
 
+function initPlatformTech() {
+  const root = document.querySelector("[data-platform-tech]");
+  if (!root) {
+    return;
+  }
+
+  const tabs = Array.from(root.querySelectorAll("[data-tech-tab]"));
+  const panels = Array.from(root.querySelectorAll("[data-tech-panel]"));
+
+  function activateTab(tab) {
+    const id = tab.getAttribute("data-tech-tab");
+    tabs.forEach((item) => {
+      const isActive = item === tab;
+      item.classList.toggle("is-active", isActive);
+      item.setAttribute("aria-selected", isActive ? "true" : "false");
+    });
+    panels.forEach((panel) => {
+      const isActive = panel.getAttribute("data-tech-panel") === id;
+      panel.classList.toggle("is-active", isActive);
+      panel.hidden = !isActive;
+    });
+  }
+
+  tabs.forEach((tab) => {
+    tab.addEventListener("click", () => activateTab(tab));
+    tab.addEventListener("keydown", (event) => {
+      const index = tabs.indexOf(tab);
+      let next = null;
+      if (event.key === "ArrowRight") {
+        next = tabs[(index + 1) % tabs.length];
+      } else if (event.key === "ArrowLeft") {
+        next = tabs[(index - 1 + tabs.length) % tabs.length];
+      } else if (event.key === "Home") {
+        next = tabs[0];
+      } else if (event.key === "End") {
+        next = tabs[tabs.length - 1];
+      }
+      if (!next) {
+        return;
+      }
+      event.preventDefault();
+      activateTab(next);
+      next.focus();
+    });
+  });
+}
+
 initNavigation();
+initPlatformTech();
 renderVintageExplorer();
 renderSfrShareTimeline();
