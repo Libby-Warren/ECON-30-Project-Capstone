@@ -27,7 +27,7 @@
           <li><a href="#mission"><span>Your lens</span>History → operational insight</a></li>
           <li><a href="#platform"><span>Operational Concentration</span>How the platform scales</a></li>
           <li><a href="#interactives"><span>Metro Footprints</span>Where the urgency concentrates</a></li>
-          <li><a href="#policy"><span>Policy stakes</span>Limits, tradeoffs, definitions</a></li>
+          <li><a href="#policy"><span>Policy stakes</span>Pro vs anti arguments</a></li>
           <li><a href="#conclusion"><span>Conclusion</span>Answer to the research question</a></li>
           <li><a href="#sources"><span>Appendix</span>Sources &amp; methods</a></li>
         </ul>
@@ -150,8 +150,8 @@
             <span class="arc-label">End</span>
             <h3>Policy under uncertainty</h3>
             <p>
-              Mixed evidence points to tradeoffs: purchase limits, portfolio caps, transparency, or tenant
-              rules—not slogans. <a href="#policy">Policy stakes</a> maps who may gain or lose ground.
+              Mixed evidence fuels both sides of the debate. <a href="#policy">Policy stakes</a> lays out three
+              sourced arguments for and against institutional SFR.
             </p>
           </article>
         </div>
@@ -642,9 +642,8 @@
         <p class="eyebrow">Progress &amp; inequality</p>
         <h2 id="policy-title" class="panel-title">National share is small; the policy debate is not</h2>
         <p class="panel-intro">
-          Institutional SFR stock remains a few percent nationally, but in some Sunbelt metros large operators
-          hold a much larger <strong>local</strong> share. That gap helps explain purchase-limit and portfolio-cap
-          proposals—even while GAO finds mixed evidence on prices, rents, and tenants.
+          Reasonable people disagree on institutional single-family rentals. Below are three sourced arguments
+          for each side—select a camp, then step through the claims. This site does not pick a winner.
         </p>
 
         <div class="policy-gap" aria-label="National versus local institutional share">
@@ -675,414 +674,279 @@
 
         <div class="policy-explorer" data-policy-explorer aria-labelledby="policy-explorer-heading">
           <div class="policy-explorer__head">
-            <p class="policy-explorer__eyebrow" id="policy-explorer-heading">Interactive policy map</p>
+            <p class="policy-explorer__eyebrow" id="policy-explorer-heading">The debate</p>
             <p class="policy-explorer__lead">
-              No net good-or-bad verdict—select a view to compare stakeholder tradeoffs, policy tools, and
-              live proposal examples.
+              Toggle between pro- and anti-institutional SFR arguments. Each side offers three claims grounded in
+              government reports, academic research, and policy analysis—not slogans.
             </p>
           </div>
 
-          <div class="policy-explorer-tabs" role="tablist" aria-label="Policy views">
+          <div class="policy-debate-sides" role="tablist" aria-label="Pro or anti institutional SFR">
             <button
               type="button"
-              class="policy-explorer-tab is-active"
+              class="policy-debate-side is-active policy-debate-side--pro"
               role="tab"
-              id="policy-tab-stakes"
+              id="debate-tab-pro"
               aria-selected="true"
-              aria-controls="policy-panel-stakes"
-              data-policy-tab="stakes"
+              aria-controls="debate-panel-pro"
+              data-debate-side="pro"
             >
-              <span class="policy-explorer-tab__num">01</span>
-              Stakeholders
+              <span class="policy-debate-side__label">Pro institutional SFR</span>
+              <span class="policy-debate-side__hint">Supply, scale, modest national footprint</span>
             </button>
             <button
               type="button"
-              class="policy-explorer-tab"
+              class="policy-debate-side policy-debate-side--anti"
               role="tab"
-              id="policy-tab-tools"
+              id="debate-tab-anti"
               aria-selected="false"
-              aria-controls="policy-panel-tools"
-              data-policy-tab="tools"
+              aria-controls="debate-panel-anti"
+              data-debate-side="anti"
               tabindex="-1"
             >
-              <span class="policy-explorer-tab__num">02</span>
-              Policy tools
-            </button>
-            <button
-              type="button"
-              class="policy-explorer-tab"
-              role="tab"
-              id="policy-tab-proposals"
-              aria-selected="false"
-              aria-controls="policy-panel-proposals"
-              data-policy-tab="proposals"
-              tabindex="-1"
-            >
-              <span class="policy-explorer-tab__num">03</span>
-              Proposals
+              <span class="policy-debate-side__label">Anti institutional SFR</span>
+              <span class="policy-debate-side__hint">Concentration, ownership access, tenant risk</span>
             </button>
           </div>
 
-          <div class="policy-explorer-stage">
+          <div class="policy-explorer-stage policy-debate-stage">
             <div
-              class="policy-explorer-panel is-active"
+              class="policy-debate-panel is-active"
               role="tabpanel"
-              id="policy-panel-stakes"
-              aria-labelledby="policy-tab-stakes"
-              data-policy-panel="stakes"
+              id="debate-panel-pro"
+              aria-labelledby="debate-tab-pro"
+              data-debate-side-panel="pro"
             >
-              <div class="policy-stakes">
-                <div class="policy-stake-nav" role="tablist" aria-label="Stakeholder groups">
-                  <button
-                    type="button"
-                    class="policy-stake-btn is-active"
-                    role="tab"
-                    aria-selected="true"
-                    data-stake="renters"
-                    id="stake-tab-renters"
-                    aria-controls="stake-panel-renters"
-                  >
-                    Renters
-                  </button>
-                  <button
-                    type="button"
-                    class="policy-stake-btn"
-                    role="tab"
-                    aria-selected="false"
-                    data-stake="buyers"
-                    id="stake-tab-buyers"
-                    aria-controls="stake-panel-buyers"
-                    tabindex="-1"
-                  >
-                    Buyers
-                  </button>
-                  <button
-                    type="button"
-                    class="policy-stake-btn"
-                    role="tab"
-                    aria-selected="false"
-                    data-stake="investors"
-                    id="stake-tab-investors"
-                    aria-controls="stake-panel-investors"
-                    tabindex="-1"
-                  >
-                    Investors
-                  </button>
-                  <button
-                    type="button"
-                    class="policy-stake-btn"
-                    role="tab"
-                    aria-selected="false"
-                    data-stake="small-landlords"
-                    id="stake-tab-small-landlords"
-                    aria-controls="stake-panel-small-landlords"
-                    tabindex="-1"
-                  >
-                    Small landlords
-                  </button>
-                </div>
-
-                <div class="policy-stake-stage">
-                  <article
-                    class="policy-stake-detail is-active"
-                    role="tabpanel"
-                    id="stake-panel-renters"
-                    aria-labelledby="stake-tab-renters"
-                    data-stake-panel="renters"
-                  >
-                    <div class="policy-stake-split">
-                      <div class="policy-stake-split__col policy-stake-split__col--gain">
-                        <p class="policy-stake-split__label">Possible benefits</p>
-                        <p>Standardized leasing and maintenance in some markets; professional management at scale.</p>
-                      </div>
-                      <div class="policy-stake-split__col policy-stake-split__col--harm">
-                        <p class="policy-stake-split__label">Possible harms</p>
-                        <p>Fees, renewal pressure, and eviction risk where tenant protections are weak.</p>
-                      </div>
-                    </div>
-                    <p class="policy-stake-evidence"><strong>Evidence:</strong> GAO (2024) — mixed on maintenance and fees.</p>
-                  </article>
-                  <article
-                    class="policy-stake-detail"
-                    role="tabpanel"
-                    id="stake-panel-buyers"
-                    aria-labelledby="stake-tab-buyers"
-                    data-stake-panel="buyers"
-                    hidden
-                  >
-                    <div class="policy-stake-split">
-                      <div class="policy-stake-split__col policy-stake-split__col--gain">
-                        <p class="policy-stake-split__label">Possible benefits</p>
-                        <p>More rental supply when investors hold formerly owner-occupied homes.</p>
-                      </div>
-                      <div class="policy-stake-split__col policy-stake-split__col--harm">
-                        <p class="policy-stake-split__label">Possible harms</p>
-                        <p>Competition for starter homes; local price pressure in tight markets.</p>
-                      </div>
-                    </div>
-                    <p class="policy-stake-evidence"><strong>Evidence:</strong> Mixed on institutional buyers and home prices.</p>
-                  </article>
-                  <article
-                    class="policy-stake-detail"
-                    role="tabpanel"
-                    id="stake-panel-investors"
-                    aria-labelledby="stake-tab-investors"
-                    data-stake-panel="investors"
-                    hidden
-                  >
-                    <div class="policy-stake-split">
-                      <div class="policy-stake-split__col policy-stake-split__col--gain">
-                        <p class="policy-stake-split__label">Possible benefits</p>
-                        <p>Scalable asset class, capital markets access, portfolio operations.</p>
-                      </div>
-                      <div class="policy-stake-split__col policy-stake-split__col--harm">
-                        <p class="policy-stake-split__label">Possible harms</p>
-                        <p>Returns sensitive to interest rates, rent growth, and operating costs.</p>
-                      </div>
-                    </div>
-                    <p class="policy-stake-evidence"><strong>Evidence:</strong> Model viability varies with macro conditions.</p>
-                  </article>
-                  <article
-                    class="policy-stake-detail"
-                    role="tabpanel"
-                    id="stake-panel-small-landlords"
-                    aria-labelledby="stake-tab-small-landlords"
-                    data-stake-panel="small-landlords"
-                    hidden
-                  >
-                    <div class="policy-stake-split">
-                      <div class="policy-stake-split__col policy-stake-split__col--gain">
-                        <p class="policy-stake-split__label">Possible benefits</p>
-                        <p>Some may sell into institutional demand at favorable prices.</p>
-                      </div>
-                      <div class="policy-stake-split__col policy-stake-split__col--harm">
-                        <p class="policy-stake-split__label">Possible harms</p>
-                        <p>Harder to compete with scaled acquirers and centralized operations.</p>
-                      </div>
-                    </div>
-                    <p class="policy-stake-evidence"><strong>Evidence:</strong> Mechanism + debate; limited causal microdata.</p>
-                  </article>
-                </div>
+              <div class="policy-arg-nav" role="tablist" aria-label="Pro arguments">
+                <button type="button" class="policy-arg-btn is-active" role="tab" aria-selected="true" data-debate-arg="1" id="pro-arg-tab-1" aria-controls="pro-arg-panel-1">
+                  <span class="policy-arg-btn__num">01</span> Rental supply
+                </button>
+                <button type="button" class="policy-arg-btn" role="tab" aria-selected="false" data-debate-arg="2" id="pro-arg-tab-2" aria-controls="pro-arg-panel-2" tabindex="-1">
+                  <span class="policy-arg-btn__num">02</span> National scale
+                </button>
+                <button type="button" class="policy-arg-btn" role="tab" aria-selected="false" data-debate-arg="3" id="pro-arg-tab-3" aria-controls="pro-arg-panel-3" tabindex="-1">
+                  <span class="policy-arg-btn__num">03</span> Operations
+                </button>
+              </div>
+              <div class="policy-arg-stage">
+                <article class="policy-arg-detail is-active" role="tabpanel" id="pro-arg-panel-1" aria-labelledby="pro-arg-tab-1" data-debate-arg-panel="1">
+                  <p class="policy-arg-detail__tag policy-arg-detail__tag--pro">Pro · Argument 01</p>
+                  <h4 class="policy-arg-detail__title">Buy-to-rent added managed rental stock after the crisis</h4>
+                  <p class="policy-arg-detail__claim">
+                    Large investors entered when distressed single-family homes were abundant and mortgage credit
+                    for owner-occupants was tight. Converting those units into professionally leased rentals
+                    expanded the rental stock rather than leaving vacant homes idle.
+                  </p>
+                  <div class="policy-arg-detail__data">
+                    <p class="policy-arg-detail__data-label">Data anchor</p>
+                    <p>
+                      Fed researchers document the emergence of buy-to-rent investors in the early 2010s; GAO reports
+                      large institutional SFR ownership was effectively <strong>absent before the early 2010s</strong>
+                      and still under ~4% of national SFR stock by 2022.
+                    </p>
+                  </div>
+                  <p class="policy-arg-detail__source">
+                    <strong>Sources:</strong>
+                    <a href="https://www.federalreserve.gov/econres/notes/feds-notes/the-emergence-of-buy-to-rent-investors-in-the-single-family-rental-market-20150902.html" target="_blank" rel="noopener noreferrer">Mills, Molloy &amp; Zarutskie (FEDS Notes, 2015)</a>;
+                    <a href="https://www.gao.gov/products/gao-24-106643" target="_blank" rel="noopener noreferrer">GAO-24-106643 (2024)</a>
+                  </p>
+                </article>
+                <article class="policy-arg-detail" role="tabpanel" id="pro-arg-panel-2" aria-labelledby="pro-arg-tab-2" data-debate-arg-panel="2" hidden>
+                  <p class="policy-arg-detail__tag policy-arg-detail__tag--pro">Pro · Argument 02</p>
+                  <h4 class="policy-arg-detail__title">National footprint is too small to be the main affordability driver</h4>
+                  <p class="policy-arg-detail__claim">
+                    Even after a decade of growth, institutional operators hold only a few percent of U.S.
+                    single-family rental stock. Critics of broad purchase bans argue that supply, zoning, and
+                    interest rates matter more—and that shutting out large landlords could shrink rental options.
+                  </p>
+                  <div class="policy-arg-detail__data">
+                    <p class="policy-arg-detail__data-label">Data anchor</p>
+                    <p>
+                      Urban Institute estimates ~<strong>574,000</strong> institutional SFR units (~<strong>3.8%</strong>
+                      of ~15.1M one-unit rentals) in 2022. Brookings cautions that banning institutional buyers is
+                      unlikely to fix affordability and may backfire on rental supply.
+                    </p>
+                  </div>
+                  <p class="policy-arg-detail__source">
+                    <strong>Sources:</strong>
+                    <a href="https://www.urban.org/research/publication/profile-institutional-single-family-rental-housing-market" target="_blank" rel="noopener noreferrer">Urban Institute (2023 profile)</a>;
+                    <a href="https://www.brookings.edu/articles/banning-institutional-investors-from-buying-single-family-homes-would-be-a-mistake/" target="_blank" rel="noopener noreferrer">Gyourko, Brookings (2026)</a>
+                  </p>
+                </article>
+                <article class="policy-arg-detail" role="tabpanel" id="pro-arg-panel-3" aria-labelledby="pro-arg-tab-3" data-debate-arg-panel="3" hidden>
+                  <p class="policy-arg-detail__tag policy-arg-detail__tag--pro">Pro · Argument 03</p>
+                  <h4 class="policy-arg-detail__title">Portfolio operations can standardize management</h4>
+                  <p class="policy-arg-detail__claim">
+                    Institutional platforms centralize leasing, maintenance, and reporting across scattered homes—
+                    functions that small landlords often struggle to perform consistently at scale. Proponents argue
+                    this professionalization can improve housing quality where execution is strong.
+                  </p>
+                  <div class="policy-arg-detail__data">
+                    <p class="policy-arg-detail__data-label">Data anchor</p>
+                    <p>
+                      Urban Institute profiles centralized acquisition and property-management systems; GAO notes
+                      tenant outcomes are <strong>mixed and understudied</strong>, but the operating model is built
+                      for repeatable buy–renovate–lease–maintain workflows across metros.
+                    </p>
+                  </div>
+                  <p class="policy-arg-detail__source">
+                    <strong>Sources:</strong>
+                    <a href="https://www.urban.org/research/publication/profile-institutional-single-family-rental-housing-market" target="_blank" rel="noopener noreferrer">Goodman et al., Urban Institute (2023)</a>;
+                    <a href="https://www.gao.gov/products/gao-24-106643" target="_blank" rel="noopener noreferrer">GAO-24-106643 (2024)</a>
+                  </p>
+                </article>
               </div>
             </div>
 
             <div
-              class="policy-explorer-panel"
+              class="policy-debate-panel"
               role="tabpanel"
-              id="policy-panel-tools"
-              aria-labelledby="policy-tab-tools"
-              data-policy-panel="tools"
+              id="debate-panel-anti"
+              aria-labelledby="debate-tab-anti"
+              data-debate-side-panel="anti"
               hidden
             >
-              <div class="policy-tools">
-                <div class="policy-tools-rail" role="tablist" aria-label="Policy tool types">
-                  <button
-                    type="button"
-                    class="policy-tool-btn is-active"
-                    role="tab"
-                    aria-selected="true"
-                    data-tool="purchase"
-                    id="tool-tab-purchase"
-                    aria-controls="tool-panel-purchase"
-                  >
-                    <span class="policy-tool-btn__num">A</span>
-                    Purchase limits
-                  </button>
-                  <button
-                    type="button"
-                    class="policy-tool-btn"
-                    role="tab"
-                    aria-selected="false"
-                    data-tool="portfolio"
-                    id="tool-tab-portfolio"
-                    aria-controls="tool-panel-portfolio"
-                    tabindex="-1"
-                  >
-                    <span class="policy-tool-btn__num">B</span>
-                    Portfolio caps
-                  </button>
-                  <button
-                    type="button"
-                    class="policy-tool-btn"
-                    role="tab"
-                    aria-selected="false"
-                    data-tool="transparency"
-                    id="tool-tab-transparency"
-                    aria-controls="tool-panel-transparency"
-                    tabindex="-1"
-                  >
-                    <span class="policy-tool-btn__num">C</span>
-                    Transparency
-                  </button>
-                  <button
-                    type="button"
-                    class="policy-tool-btn"
-                    role="tab"
-                    aria-selected="false"
-                    data-tool="tenant"
-                    id="tool-tab-tenant"
-                    aria-controls="tool-panel-tenant"
-                    tabindex="-1"
-                  >
-                    <span class="policy-tool-btn__num">D</span>
-                    Tenant rules
-                  </button>
-                </div>
-                <div class="policy-tool-stage">
-                  <article class="policy-tool-detail is-active" role="tabpanel" id="tool-panel-purchase" data-tool-panel="purchase">
-                    <p>
-                      Restrict or ban institutional buyers from acquiring single-family homes—often the most
-                      visible proposal in state debates.
-                    </p>
-                    <p class="policy-tool-detail__note">
-                      Thresholds in bills (e.g., 1,000+ homes) may not match research definitions (Urban ≥100).
-                    </p>
-                  </article>
-                  <article class="policy-tool-detail" role="tabpanel" id="tool-panel-portfolio" data-tool-panel="portfolio" hidden>
-                    <p>
-                      Cap how many homes one entity may own locally or statewide—targeting concentration rather
-                      than a single transaction.
-                    </p>
-                  </article>
-                  <article class="policy-tool-detail" role="tabpanel" id="tool-panel-transparency" data-tool-panel="transparency" hidden>
-                    <p>
-                      Registration, disclosure, or beneficial-ownership rules to reduce opacity through LLCs and
-                      layered ownership.
-                    </p>
-                  </article>
-                  <article class="policy-tool-detail" role="tabpanel" id="tool-panel-tenant" data-tool-panel="tenant" hidden>
-                    <p>
-                      Rent stabilization, just-cause eviction, or fee limits—often separate from who may own, but
-                      central to renter outcomes.
-                    </p>
-                  </article>
-                </div>
+              <div class="policy-arg-nav" role="tablist" aria-label="Anti arguments">
+                <button type="button" class="policy-arg-btn is-active" role="tab" aria-selected="true" data-debate-arg="1" id="anti-arg-tab-1" aria-controls="anti-arg-panel-1">
+                  <span class="policy-arg-btn__num">01</span> Local power
+                </button>
+                <button type="button" class="policy-arg-btn" role="tab" aria-selected="false" data-debate-arg="2" id="anti-arg-tab-2" aria-controls="anti-arg-panel-2" tabindex="-1">
+                  <span class="policy-arg-btn__num">02</span> Homeownership
+                </button>
+                <button type="button" class="policy-arg-btn" role="tab" aria-selected="false" data-debate-arg="3" id="anti-arg-tab-3" aria-controls="anti-arg-panel-3" tabindex="-1">
+                  <span class="policy-arg-btn__num">03</span> Renters
+                </button>
               </div>
-            </div>
-
-            <div
-              class="policy-explorer-panel"
-              role="tabpanel"
-              id="policy-panel-proposals"
-              aria-labelledby="policy-tab-proposals"
-              data-policy-panel="proposals"
-              hidden
-            >
-              <div class="policy-proposals-wrap">
-                <div class="policy-proposal-nav" role="tablist" aria-label="Government level">
-                  <button
-                    type="button"
-                    class="policy-proposal-btn is-active"
-                    role="tab"
-                    aria-selected="true"
-                    data-proposal="california"
-                    id="proposal-tab-california"
-                    aria-controls="proposal-panel-california"
-                  >
-                    California
-                  </button>
-                  <button
-                    type="button"
-                    class="policy-proposal-btn"
-                    role="tab"
-                    aria-selected="false"
-                    data-proposal="federal"
-                    id="proposal-tab-federal"
-                    aria-controls="proposal-panel-federal"
-                    tabindex="-1"
-                  >
-                    Federal
-                  </button>
-                  <button
-                    type="button"
-                    class="policy-proposal-btn"
-                    role="tab"
-                    aria-selected="false"
-                    data-proposal="local"
-                    id="proposal-tab-local"
-                    aria-controls="proposal-panel-local"
-                    tabindex="-1"
-                  >
-                    Local / metro
-                  </button>
-                </div>
-                <div class="policy-proposal-stage">
-                  <article
-                    class="policy-proposal-detail is-active"
-                    role="tabpanel"
-                    id="proposal-panel-california"
-                    aria-labelledby="proposal-tab-california"
-                    data-proposal-panel="california"
-                  >
-                    <h4>Institutional purchase limits</h4>
+              <div class="policy-arg-stage">
+                <article class="policy-arg-detail is-active" role="tabpanel" id="anti-arg-panel-1" aria-labelledby="anti-arg-tab-1" data-debate-arg-panel="1">
+                  <p class="policy-arg-detail__tag policy-arg-detail__tag--anti">Anti · Argument 01</p>
+                  <h4 class="policy-arg-detail__title">Local market power can far exceed the national average</h4>
+                  <p class="policy-arg-detail__claim">
+                    A small national share can still mean heavy institutional presence in specific Sunbelt metros.
+                    Critics argue local concentration gives large operators outsize influence over neighborhood rents,
+                    maintenance standards, and who gets to stay.
+                  </p>
+                  <div class="policy-arg-detail__data">
+                    <p class="policy-arg-detail__data-label">Data anchor</p>
                     <p>
-                      <a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240AB2584" target="_blank" rel="noopener noreferrer">AB 2584</a>
-                      and
-                      <a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240SB1212" target="_blank" rel="noopener noreferrer">SB 1212</a>
-                      (2023–24 session) proposed restrictions on large investors buying single-family homes—often
-                      framed around investors with 1,000+ units.
+                      GAO highlights metros where institutional SFR share exceeds national averages. This site’s
+                      <a href="#lab-national-dot">metro lab</a> anchors Jacksonville, Atlanta, Charlotte, and Phoenix—
+                      markets where local institutional share can approach the <strong>~25% scale</strong> while the
+                      U.S. line stays near 4%.
                     </p>
-                    <p>
-                      Context:
-                      <a href="https://calmatters.org/housing/2024/02/corporate-landlords-california/" target="_blank" rel="noopener noreferrer">CalMatters on corporate landlords</a>.
-                    </p>
-                    <p class="policy-proposal-detail__status">2023–24 session · check legislature for current status</p>
-                  </article>
-                  <article
-                    class="policy-proposal-detail"
-                    role="tabpanel"
-                    id="proposal-panel-federal"
-                    aria-labelledby="proposal-tab-federal"
-                    data-proposal-panel="federal"
-                    hidden
-                  >
-                    <h4>Congressional attention</h4>
+                  </div>
+                  <p class="policy-arg-detail__source">
+                    <strong>Sources:</strong>
+                    <a href="https://www.gao.gov/products/gao-24-106643" target="_blank" rel="noopener noreferrer">GAO-24-106643 (2024)</a>;
+                    academic work on landlord market power (e.g.,
+                    <a href="https://doi.org/10.1093/rfs/hhad013" target="_blank" rel="noopener noreferrer">Gurun, Wu &amp; Xiao, <em>Review of Financial Studies</em> 2023</a>)
+                  </p>
+                </article>
+                <article class="policy-arg-detail" role="tabpanel" id="anti-arg-panel-2" aria-labelledby="anti-arg-tab-2" data-debate-arg-panel="2" hidden>
+                  <p class="policy-arg-detail__tag policy-arg-detail__tag--anti">Anti · Argument 02</p>
+                  <h4 class="policy-arg-detail__title">Institutional buyers compete with owner-occupants for starter homes</h4>
+                  <p class="policy-arg-detail__claim">
+                    When large investors bid on the same single-family homes as first-time buyers—often with cash and
+                    portfolio analytics—homeownership access can tighten in supply-constrained markets. Policy
+                    hearings and state bills frame this as a fairness and wealth-building issue, not only a rental
+                    supply question.
+                  </p>
+                  <div class="policy-arg-detail__data">
+                    <p class="policy-arg-detail__data-label">Data anchor</p>
                     <p>
                       The 2022 House Financial Services hearing
-                      <a href="https://www.govinfo.gov/content/pkg/CHRG-117hhrg47123/html/CHRG-117hhrg47123.htm" target="_blank" rel="noopener noreferrer">“Where Have All the Houses Gone?”</a>
-                      examined investor activity in housing markets.
+                      <strong>“Where Have All the Houses Gone?”</strong> examined investor purchases alongside
+                      California proposals (AB 2584, SB 1212) targeting investors with <strong>1,000+</strong> units.
+                      GAO’s literature review links some studies to higher prices; aggregate effects remain contested.
                     </p>
+                  </div>
+                  <p class="policy-arg-detail__source">
+                    <strong>Sources:</strong>
+                    <a href="https://www.govinfo.gov/content/pkg/CHRG-117hhrg47123/html/CHRG-117hhrg47123.htm" target="_blank" rel="noopener noreferrer">House Financial Services hearing (2022)</a>;
+                    <a href="https://calmatters.org/housing/2024/02/corporate-landlords-california/" target="_blank" rel="noopener noreferrer">CalMatters (2024)</a>;
+                    <a href="https://www.gao.gov/products/gao-24-106643" target="_blank" rel="noopener noreferrer">GAO-24-106643 (2024)</a>
+                  </p>
+                </article>
+                <article class="policy-arg-detail" role="tabpanel" id="anti-arg-panel-3" aria-labelledby="anti-arg-tab-3" data-debate-arg-panel="3" hidden>
+                  <p class="policy-arg-detail__tag policy-arg-detail__tag--anti">Anti · Argument 03</p>
+                  <h4 class="policy-arg-detail__title">Renters face fees, turnover, and weak protections</h4>
+                  <p class="policy-arg-detail__claim">
+                    Advocates and researchers warn that corporate landlords may charge higher fees, renew leases
+                    aggressively, or evict at higher rates than smaller landlords—especially where tenant law is
+                    thin. Even neutral reviewers say evidence is limited but concerning enough to warrant oversight.
+                  </p>
+                  <div class="policy-arg-detail__data">
+                    <p class="policy-arg-detail__data-label">Data anchor</p>
                     <p>
-                      GAO-24-106643 summarizes institutional SFR scale, local concentration, and mixed evidence
-                      policymakers weigh when considering federal responses.
+                      GAO finds <strong>limited and mixed</strong> evidence on institutional landlords and tenant
+                      outcomes (maintenance, fees, evictions). Atlanta Fed research on corporate landlords links
+                      institutional ownership patterns to displacement concerns in post-crisis markets.
                     </p>
-                    <p class="policy-proposal-detail__status">Hearing record (2022) · ongoing debate, not one enacted federal ban</p>
-                  </article>
-                  <article
-                    class="policy-proposal-detail"
-                    role="tabpanel"
-                    id="proposal-panel-local"
-                    aria-labelledby="proposal-tab-local"
-                    data-proposal-panel="local"
-                    hidden
-                  >
-                    <h4>Where urgency concentrates</h4>
-                    <p>
-                      GAO highlights Sunbelt metros where institutional presence exceeds national averages. This
-                      site’s <a href="#lab-national-dot">metro comparison</a> includes Jacksonville, Atlanta,
-                      Charlotte, and Phoenix—markets where local share can far exceed the national ~4% line.
-                    </p>
-                    <p class="policy-proposal-detail__status">Local rules vary; some cities discuss corporate-landlord limits separately from state law</p>
-                  </article>
-                </div>
-                <p class="policy-proposal-footnote">
-                  Status as of spring 2026 from public records and reporting—not legal advice.
-                </p>
+                  </div>
+                  <p class="policy-arg-detail__source">
+                    <strong>Sources:</strong>
+                    <a href="https://www.gao.gov/products/gao-24-106643" target="_blank" rel="noopener noreferrer">GAO-24-106643 (2024)</a>;
+                    <a href="https://www.frbatlanta.org/community-development/publications/discussion-papers/2016/04-corporate-landlords-institutional-investors-and-displacement.aspx" target="_blank" rel="noopener noreferrer">Raymond et al., Atlanta Fed DP 2016-4</a>
+                  </p>
+                </article>
               </div>
             </div>
           </div>
         </div>
 
-        <aside class="policy-tension" aria-label="Policy design tradeoff">
+        <div class="policy-proposals-block" aria-labelledby="policy-proposals-heading">
+          <h3 class="policy-proposals-block__title" id="policy-proposals-heading">Where policymakers are acting</h3>
+          <p class="policy-proposals-block__lead">
+            Anti-institutional arguments often translate into purchase limits or portfolio caps. Examples below—
+            status as of spring 2026, not legal advice.
+          </p>
+          <div class="policy-proposals-wrap">
+            <div class="policy-proposal-nav" role="tablist" aria-label="Government level">
+              <button type="button" class="policy-proposal-btn is-active" role="tab" aria-selected="true" data-proposal="california" id="proposal-tab-california" aria-controls="proposal-panel-california">California</button>
+              <button type="button" class="policy-proposal-btn" role="tab" aria-selected="false" data-proposal="federal" id="proposal-tab-federal" aria-controls="proposal-panel-federal" tabindex="-1">Federal</button>
+              <button type="button" class="policy-proposal-btn" role="tab" aria-selected="false" data-proposal="local" id="proposal-tab-local" aria-controls="proposal-panel-local" tabindex="-1">Local / metro</button>
+            </div>
+            <div class="policy-proposal-stage">
+              <article class="policy-proposal-detail is-active" role="tabpanel" id="proposal-panel-california" aria-labelledby="proposal-tab-california" data-proposal-panel="california">
+                <h4>Institutional purchase limits</h4>
+                <p>
+                  <a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240AB2584" target="_blank" rel="noopener noreferrer">AB 2584</a>
+                  and
+                  <a href="https://leginfo.legislature.ca.gov/faces/billNavClient.xhtml?bill_id=202320240SB1212" target="_blank" rel="noopener noreferrer">SB 1212</a>
+                  (2023–24 session) proposed restrictions on large investors buying single-family homes.
+                </p>
+                <p class="policy-proposal-detail__status">2023–24 session · check legislature for current status</p>
+              </article>
+              <article class="policy-proposal-detail" role="tabpanel" id="proposal-panel-federal" aria-labelledby="proposal-tab-federal" data-proposal-panel="federal" hidden>
+                <h4>Congressional attention</h4>
+                <p>
+                  <a href="https://www.govinfo.gov/content/pkg/CHRG-117hhrg47123/html/CHRG-117hhrg47123.htm" target="_blank" rel="noopener noreferrer">“Where Have All the Houses Gone?”</a>
+                  (2022) and GAO-24-106643 frame federal oversight options—not a single enacted national ban.
+                </p>
+                <p class="policy-proposal-detail__status">Hearing record (2022)</p>
+              </article>
+              <article class="policy-proposal-detail" role="tabpanel" id="proposal-panel-local" aria-labelledby="proposal-tab-local" data-proposal-panel="local" hidden>
+                <h4>Metro concentration</h4>
+                <p>
+                  GAO Sunbelt metros and this site’s
+                  <a href="#lab-national-dot">national dot lab</a> show why local rules may target markets where
+                  institutional share is highest.
+                </p>
+                <p class="policy-proposal-detail__status">Local ordinances vary by city and state</p>
+              </article>
+            </div>
+          </div>
+        </div>
+
+        <aside class="policy-tension" aria-label="Why the debate persists">
           <div class="policy-tension__icon" aria-hidden="true">↔</div>
           <div class="policy-tension__copy">
-            <p class="policy-tension__eyebrow">Design tension</p>
+            <p class="policy-tension__eyebrow">Why neither side wins outright</p>
             <p>
-              Blunt purchase bans may reduce investor competition for owner-occupants but can also affect rental
-              supply or shift ownership into opaque entities.
-              <a href="https://www.brookings.edu/articles/banning-institutional-investors-from-buying-single-family-homes-would-be-a-mistake/" target="_blank" rel="noopener noreferrer">Brookings (Gyourko, 2026)</a>
-              argues broad bans are a mistake; supporters counter that ownership access matters more. Disagreement
-              persists because data and definitions differ.
+              Proponents stress national scale and rental supply; critics stress local concentration and
+              ownership access. GAO finds evidence on prices, rents, and tenants is <strong>mixed</strong>, and
+              definitions of “institutional” differ across bills and datasets—so both argument sets can sound
+              logical while pointing at different geographies and outcomes.
             </p>
           </div>
         </aside>
@@ -1142,8 +1006,8 @@
                 standardization of suburban rentals.
               </li>
               <li>
-                <strong><a href="#policy">Policy stakes.</a></strong> National share stays modest while local
-                concentration and purchase-limit proposals show why governance—not only finance—matters now.
+                <strong><a href="#policy">Policy stakes.</a></strong> Pro and anti arguments with data anchors
+                (GAO, Urban, Brookings, and related research) show why governance—not only finance—matters now.
               </li>
             </ul>
           </div>
@@ -1272,7 +1136,7 @@
         <h3>Policy and legislative sources</h3>
         <ul class="bibliography bibliography--compact">
           <li>
-            <a href="#policy">Policy stakes</a> on this site — stakeholder tradeoffs and proposal context; primary
+            <a href="#policy">Policy stakes</a> on this site — pro/anti argument sets and proposal context; primary
             citations in bibliography below (GAO, CalMatters, California Legislature, Brookings, House hearing).
           </li>
         </ul>

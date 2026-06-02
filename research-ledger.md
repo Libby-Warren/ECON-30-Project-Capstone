@@ -15,7 +15,7 @@
 | Ch.5 Stress test | Returns sensitive to rates, rent growth, OpEx | Illustrative sensitivity | Not firm-level data |
 | Vintage explorer | Institutional/mega tilt to newer cohorts | Urban Figure 5, 2021 MSAs | Within-group shares, not market share |
 | Takeaways | Systems matter; finance matters; execution matters | Synthesis of above | Policy prescriptions deliberately modest |
-| Policy stakes (`#policy`) | Stakeholder tradeoffs; CA purchase-limit bills; federal hearing; Sunbelt metro urgency | GAO 2024; CalMatters; AB 2584; SB 1212; House hearing; Brookings | Bills may change; status as of spring 2026; Brookings warns on blunt bans |
+| Policy stakes (`#policy`) | Pro vs anti debate (3 args each); CA/federal/local proposals; national vs metro gap | GAO 2024; Urban; Mills FEDS; Brookings; Gurun et al.; Atlanta Fed DP; House hearing | Arguments synthesize sources; not a verdict; bills as of spring 2026 |
 
 ## Tension table (literature)
 

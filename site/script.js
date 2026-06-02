@@ -513,9 +513,9 @@ function initPolicyExplorer() {
     return;
   }
 
-  function wireTabGroup({ tabAttr, panelAttr, tabSelector, panelSelector }) {
-    const tabs = Array.from(root.querySelectorAll(tabSelector));
-    const panels = Array.from(root.querySelectorAll(panelSelector));
+  function wireTabGroup(scope, { tabAttr, panelAttr, tabSelector, panelSelector }) {
+    const tabs = Array.from(scope.querySelectorAll(tabSelector));
+    const panels = Array.from(scope.querySelectorAll(panelSelector));
     if (!tabs.length || !panels.length) {
       return;
     }
@@ -559,33 +559,31 @@ function initPolicyExplorer() {
     });
   }
 
-  wireTabGroup({
-    tabAttr: "data-policy-tab",
-    panelAttr: "data-policy-panel",
-    tabSelector: "[data-policy-tab]",
-    panelSelector: "[data-policy-panel]",
+  wireTabGroup(root, {
+    tabAttr: "data-debate-side",
+    panelAttr: "data-debate-side-panel",
+    tabSelector: "[data-debate-side]",
+    panelSelector: "[data-debate-side-panel]",
   });
 
-  wireTabGroup({
-    tabAttr: "data-stake",
-    panelAttr: "data-stake-panel",
-    tabSelector: "[data-stake]",
-    panelSelector: "[data-stake-panel]",
+  root.querySelectorAll("[data-debate-side-panel]").forEach((sidePanel) => {
+    wireTabGroup(sidePanel, {
+      tabAttr: "data-debate-arg",
+      panelAttr: "data-debate-arg-panel",
+      tabSelector: "[data-debate-arg]",
+      panelSelector: "[data-debate-arg-panel]",
+    });
   });
 
-  wireTabGroup({
-    tabAttr: "data-tool",
-    panelAttr: "data-tool-panel",
-    tabSelector: "[data-tool]",
-    panelSelector: "[data-tool-panel]",
-  });
-
-  wireTabGroup({
-    tabAttr: "data-proposal",
-    panelAttr: "data-proposal-panel",
-    tabSelector: "[data-proposal]",
-    panelSelector: "[data-proposal-panel]",
-  });
+  const proposalsBlock = document.querySelector(".policy-proposals-block");
+  if (proposalsBlock) {
+    wireTabGroup(proposalsBlock, {
+      tabAttr: "data-proposal",
+      panelAttr: "data-proposal-panel",
+      tabSelector: "[data-proposal]",
+      panelSelector: "[data-proposal-panel]",
+    });
+  }
 }
 
 initNavigation();

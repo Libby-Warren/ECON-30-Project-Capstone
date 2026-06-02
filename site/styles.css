@@ -2285,285 +2285,267 @@ main {
   color: var(--text-soft);
 }
 
-.policy-explorer-tabs {
+.policy-debate-sides {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: 1fr 1fr;
   gap: 0.35rem;
   margin-top: 1.25rem;
 }
 
-.policy-explorer-tab {
+.policy-debate-side {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.15rem;
-  padding: 0.7rem 0.8rem;
+  gap: 0.25rem;
+  padding: 0.85rem 1rem;
   border: 1px solid var(--line);
   background: transparent;
   color: var(--text-soft);
   font-family: var(--font-ui);
-  font-size: 0.72rem;
-  font-weight: 600;
+  text-align: left;
+  cursor: pointer;
+  transition: border-color 0.25s, background 0.25s, color 0.25s, box-shadow 0.25s;
+}
+
+.policy-debate-side__label {
+  font-size: 0.78rem;
+  font-weight: 700;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-  cursor: pointer;
-  transition: border-color 0.2s, background 0.2s, color 0.2s, box-shadow 0.2s;
 }
 
-.policy-explorer-tab__num {
-  font-family: var(--font-display);
-  font-size: 1rem;
+.policy-debate-side__hint {
+  font-size: 0.72rem;
   font-weight: 400;
-  color: var(--gold-muted);
-  transition: color 0.2s;
+  letter-spacing: 0.02em;
+  text-transform: none;
+  color: var(--text-muted);
+  line-height: 1.35;
 }
 
-.policy-explorer-tab:hover {
-  border-color: var(--gold-muted);
+.policy-debate-side--pro:hover {
+  border-color: rgba(120, 180, 130, 0.55);
   color: var(--gold-pale);
 }
 
-.policy-explorer-tab.is-active {
-  border-color: var(--gold);
+.policy-debate-side--pro.is-active {
+  border-color: rgba(120, 180, 130, 0.75);
+  background: rgba(120, 180, 130, 0.08);
+  box-shadow: 0 0 20px rgba(120, 180, 130, 0.1);
   color: var(--gold-pale);
-  background: rgba(212, 175, 55, 0.1);
-  box-shadow: 0 0 18px rgba(212, 175, 55, 0.12);
 }
 
-.policy-explorer-tab.is-active .policy-explorer-tab__num {
-  color: var(--gold);
+.policy-debate-side--pro.is-active .policy-debate-side__hint {
+  color: rgba(200, 230, 205, 0.75);
 }
 
-.policy-explorer-stage {
+.policy-debate-side--anti:hover {
+  border-color: rgba(200, 130, 110, 0.55);
+  color: var(--gold-pale);
+}
+
+.policy-debate-side--anti.is-active {
+  border-color: rgba(200, 130, 110, 0.75);
+  background: rgba(200, 130, 110, 0.08);
+  box-shadow: 0 0 20px rgba(200, 130, 110, 0.1);
+  color: var(--gold-pale);
+}
+
+.policy-debate-side--anti.is-active .policy-debate-side__hint {
+  color: rgba(230, 200, 190, 0.75);
+}
+
+.policy-explorer-stage,
+.policy-debate-stage {
   position: relative;
   margin-top: 0.75rem;
-  min-height: 14rem;
+  min-height: 16rem;
   border: 1px solid var(--line-gold);
   background: var(--bg-elevated);
 }
 
-.policy-explorer-panel {
-  padding: 1.15rem 1.2rem 1.25rem;
+.policy-debate-panel {
+  padding: 1rem 1.1rem 1.15rem;
   opacity: 0;
   transform: translateY(8px);
   transition: opacity 0.28s ease, transform 0.28s ease;
   pointer-events: none;
 }
 
-.policy-explorer-panel.is-active {
+.policy-debate-panel.is-active {
   opacity: 1;
   transform: translateY(0);
   pointer-events: auto;
 }
 
-.policy-explorer-panel[hidden] {
+.policy-debate-panel[hidden] {
   display: none;
 }
 
-/* Stakeholder selector */
-.policy-stakes {
+.policy-arg-nav {
   display: grid;
-  grid-template-columns: minmax(9rem, 11rem) minmax(0, 1fr);
-  gap: 0;
-  min-height: 12rem;
-}
-
-.policy-stake-nav {
-  display: flex;
-  flex-direction: column;
-  gap: 0;
-  border-right: 1px solid var(--line);
-  background: rgba(0, 0, 0, 0.2);
-}
-
-.policy-stake-btn {
-  padding: 0.85rem 1rem;
-  border: 0;
-  border-bottom: 1px solid var(--line);
-  background: transparent;
-  color: var(--text-soft);
-  font-family: var(--font-ui);
-  font-size: 0.82rem;
-  font-weight: 500;
-  text-align: left;
-  cursor: pointer;
-  transition: background 0.2s, color 0.2s, border-left 0.2s;
-  border-left: 3px solid transparent;
-}
-
-.policy-stake-btn:last-child {
-  border-bottom: 0;
-}
-
-.policy-stake-btn:hover {
-  color: var(--gold-pale);
-  background: rgba(212, 175, 55, 0.06);
-}
-
-.policy-stake-btn.is-active {
-  color: var(--gold-pale);
-  background: rgba(212, 175, 55, 0.12);
-  border-left-color: var(--gold);
-}
-
-.policy-stake-stage {
-  position: relative;
-  padding: 1.1rem 1.25rem 1.2rem;
-}
-
-.policy-stake-detail {
-  opacity: 0;
-  transform: translateX(6px);
-  transition: opacity 0.25s ease, transform 0.25s ease;
-}
-
-.policy-stake-detail.is-active {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.policy-stake-detail[hidden] {
-  display: none;
-}
-
-.policy-stake-split {
-  display: grid;
-  grid-template-columns: 1fr 1fr;
-  gap: 1px;
-  background: var(--line);
-  border: 1px solid var(--line);
-}
-
-.policy-stake-split__col {
-  padding: 1rem 1.05rem;
-  background: rgba(0, 0, 0, 0.22);
-}
-
-.policy-stake-split__col--gain {
-  border-top: 2px solid rgba(120, 180, 130, 0.45);
-}
-
-.policy-stake-split__col--harm {
-  border-top: 2px solid rgba(200, 120, 100, 0.45);
-}
-
-.policy-stake-split__label {
-  margin: 0 0 0.45rem;
-  font-size: 0.65rem;
-  font-weight: 600;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-  color: var(--gold-muted);
-}
-
-.policy-stake-split__col p:last-child {
-  margin: 0;
-  font-size: 0.88rem;
-  line-height: 1.5;
-  color: var(--text-soft);
-}
-
-.policy-stake-evidence {
-  margin: 0.85rem 0 0;
-  padding-top: 0.75rem;
-  border-top: 1px solid var(--line);
-  font-size: 0.82rem;
-  color: var(--text-muted);
-}
-
-/* Policy tools rail */
-.policy-tools {
-  display: flex;
-  flex-direction: column;
-  gap: 0.75rem;
-  min-height: 12rem;
-}
-
-.policy-tools-rail {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 0.35rem;
+  margin-bottom: 0.85rem;
 }
 
-.policy-tool-btn {
+.policy-arg-btn {
   display: flex;
   flex-direction: column;
   align-items: flex-start;
-  gap: 0.2rem;
-  padding: 0.65rem 0.7rem;
+  gap: 0.15rem;
+  padding: 0.6rem 0.7rem;
   border: 1px solid var(--line);
-  background: rgba(0, 0, 0, 0.18);
+  background: rgba(0, 0, 0, 0.2);
   color: var(--text-soft);
   font-family: var(--font-ui);
-  font-size: 0.72rem;
+  font-size: 0.68rem;
   font-weight: 600;
-  letter-spacing: 0.04em;
+  letter-spacing: 0.05em;
   text-transform: uppercase;
   text-align: left;
   cursor: pointer;
   transition: border-color 0.2s, background 0.2s, color 0.2s;
 }
 
-.policy-tool-btn__num {
+.policy-arg-btn__num {
   font-family: var(--font-display);
   font-size: 0.95rem;
   color: var(--gold-muted);
 }
 
-.policy-tool-btn:hover {
+.policy-arg-btn:hover {
   border-color: var(--gold-muted);
   color: var(--gold-pale);
 }
 
-.policy-tool-btn.is-active {
+.policy-arg-btn.is-active {
   border-color: var(--gold);
   background: rgba(212, 175, 55, 0.12);
   color: var(--gold-pale);
 }
 
-.policy-tool-btn.is-active .policy-tool-btn__num {
+.policy-arg-btn.is-active .policy-arg-btn__num {
   color: var(--gold);
 }
 
-.policy-tool-stage {
-  flex: 1;
+.policy-arg-stage {
+  position: relative;
+  min-height: 11rem;
   padding: 1rem 1.05rem;
-  border: 1px solid var(--line-gold);
+  border: 1px solid var(--line);
   background: rgba(0, 0, 0, 0.18);
 }
 
-.policy-tool-detail {
+.policy-arg-detail {
   opacity: 0;
-  transform: translateY(4px);
-  transition: opacity 0.22s ease, transform 0.22s ease;
+  transform: translateY(6px);
+  transition: opacity 0.25s ease, transform 0.25s ease;
 }
 
-.policy-tool-detail.is-active {
+.policy-arg-detail.is-active {
   opacity: 1;
   transform: translateY(0);
 }
 
-.policy-tool-detail[hidden] {
+.policy-arg-detail[hidden] {
   display: none;
 }
 
-.policy-tool-detail p {
-  margin: 0;
+.policy-arg-detail__tag {
+  margin: 0 0 0.5rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.policy-arg-detail__tag--pro {
+  color: rgba(140, 200, 150, 0.9);
+}
+
+.policy-arg-detail__tag--anti {
+  color: rgba(210, 150, 130, 0.95);
+}
+
+.policy-arg-detail__title {
+  margin: 0 0 0.65rem;
+  font-family: var(--font-display);
+  font-size: clamp(1.15rem, 2.2vw, 1.45rem);
+  font-weight: 400;
+  line-height: 1.2;
+  color: var(--gold-pale);
+}
+
+.policy-arg-detail__claim {
+  margin: 0 0 0.85rem;
   font-size: 0.92rem;
+  line-height: 1.6;
+  color: var(--text-soft);
+}
+
+.policy-arg-detail__data {
+  margin: 0 0 0.85rem;
+  padding: 0.85rem 0.95rem;
+  border: 1px solid var(--line-gold);
+  border-left: 3px solid var(--gold);
+  background: rgba(212, 175, 55, 0.06);
+}
+
+.policy-arg-detail__data-label {
+  margin: 0 0 0.35rem;
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+
+.policy-arg-detail__data p:last-child {
+  margin: 0;
+  font-size: 0.86rem;
   line-height: 1.55;
   color: var(--text-soft);
 }
 
-.policy-tool-detail__note {
-  margin-top: 0.65rem !important;
-  font-size: 0.8rem !important;
-  color: var(--text-muted) !important;
-  font-style: italic;
+.policy-arg-detail__source {
+  margin: 0;
+  padding-top: 0.75rem;
+  border-top: 1px solid var(--line);
+  font-size: 0.8rem;
+  line-height: 1.55;
+  color: var(--text-muted);
+}
+
+.policy-arg-detail__source a {
+  color: var(--gold-light);
+}
+
+.policy-proposals-block {
+  margin-top: 2.25rem;
+  padding-top: 1.75rem;
+  border-top: 1px solid var(--line-gold);
+}
+
+.policy-proposals-block__title {
+  margin: 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.5vw, 1.65rem);
+  font-weight: 400;
+  color: var(--gold-pale);
+}
+
+.policy-proposals-block__lead {
+  margin: 0.5rem 0 1rem;
+  max-width: 40rem;
+  font-size: 0.88rem;
+  line-height: 1.55;
+  color: var(--text-soft);
 }
 
 /* Proposals sub-nav */
 .policy-proposals-wrap {
-  min-height: 12rem;
+  min-height: auto;
 }
 
 .policy-proposal-nav {
@@ -3402,42 +3384,12 @@ main {
     min-height: 0;
   }
 
-  .policy-explorer-tabs {
+  .policy-debate-sides {
     grid-template-columns: 1fr;
   }
 
-  .policy-stakes {
+  .policy-arg-nav {
     grid-template-columns: 1fr;
-  }
-
-  .policy-stake-nav {
-    flex-direction: row;
-    flex-wrap: wrap;
-    border-right: 0;
-    border-bottom: 1px solid var(--line);
-  }
-
-  .policy-stake-btn {
-    flex: 1 1 calc(50% - 1px);
-    border-bottom: 0;
-    border-left: 0 !important;
-    border-top: 3px solid transparent;
-    text-align: center;
-    padding: 0.65rem 0.5rem;
-    font-size: 0.75rem;
-  }
-
-  .policy-stake-btn.is-active {
-    border-top-color: var(--gold);
-    border-left-color: transparent !important;
-  }
-
-  .policy-stake-split {
-    grid-template-columns: 1fr;
-  }
-
-  .policy-tools-rail {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
   }
 
   .platform-tech-columns {
