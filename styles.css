@@ -849,7 +849,7 @@ main {
 
 .platform-tech-tabs {
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-template-columns: repeat(2, minmax(0, 1fr));
   gap: 0.35rem;
   margin-top: 1.25rem;
 }
@@ -960,6 +960,32 @@ main {
   font-size: 0.78rem;
   color: var(--text-muted);
   line-height: 1.45;
+}
+
+.platform-tech-columns {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 1rem;
+  margin-top: 0.25rem;
+}
+
+.platform-tech-column {
+  padding: 0.85rem 0.9rem;
+  border: 1px solid rgba(212, 175, 55, 0.2);
+  background: rgba(0, 0, 0, 0.2);
+}
+
+.platform-tech-column__label {
+  margin: 0 0 0.65rem;
+  font-size: 0.65rem;
+  font-weight: 600;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+  color: var(--gold-muted);
+}
+
+.platform-tech-column .platform-tech-chip-note {
+  margin-top: 0.65rem;
 }
 
 /* —— Quote band —— */
@@ -2816,8 +2842,8 @@ main {
     grid-template-columns: 1fr;
   }
 
-  .platform-tech-tabs {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+  .platform-tech-columns {
+    grid-template-columns: 1fr;
   }
 
   .feature-strip article,
