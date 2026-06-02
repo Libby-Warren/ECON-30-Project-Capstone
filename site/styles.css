@@ -818,6 +818,62 @@ main {
   font-size: 0.92rem;
 }
 
+.platform-tech {
+  margin: 2rem 0 0;
+  padding: 1.25rem 1.35rem;
+  border: 1px solid var(--line-gold);
+  background: rgba(0, 0, 0, 0.28);
+}
+
+.platform-tech h3 {
+  margin: 0.35rem 0 0;
+  font-family: var(--font-display);
+  font-size: clamp(1.35rem, 2.5vw, 1.75rem);
+  font-weight: 400;
+  color: var(--gold-pale);
+}
+
+.platform-tech-intro,
+.platform-tech-note {
+  margin: 0.65rem 0 0;
+  font-size: 0.9rem;
+  color: var(--text-soft);
+  line-height: 1.55;
+}
+
+.platform-tech-note {
+  margin-top: 1rem;
+  font-size: 0.78rem;
+  color: var(--text-muted);
+}
+
+.platform-tech-list {
+  margin: 1rem 0 0;
+  padding: 0;
+  list-style: none;
+  display: grid;
+  gap: 0.85rem;
+}
+
+.platform-tech-list li {
+  padding-left: 0.85rem;
+  border-left: 2px solid rgba(212, 175, 55, 0.4);
+  font-size: 0.9rem;
+  line-height: 1.55;
+  color: var(--text-soft);
+}
+
+.platform-tech-list a {
+  color: var(--gold-light);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.35);
+  text-decoration: none;
+}
+
+.platform-tech-list a:hover {
+  color: var(--gold-pale);
+  border-bottom-color: var(--gold-pale);
+}
+
 /* —— Quote band —— */
 .quote-band {
   min-height: 55vh;
