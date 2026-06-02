@@ -403,6 +403,7 @@ function initNavigation() {
     "interactives",
     "lab-national-dot",
     "vintage",
+    "policy",
     "conclusion",
     "sources",
   ];
@@ -414,11 +415,12 @@ function initNavigation() {
     interactives: 4,
     vintage: 4,
     "lab-national-dot": 4,
-    conclusion: 5,
-    limits: 5,
-    progress: 5,
-    takeaways: 5,
-    sources: 6,
+    policy: 5,
+    conclusion: 6,
+    limits: 6,
+    progress: 6,
+    takeaways: 6,
+    sources: 7,
   };
 
   const panelLinks = document.querySelectorAll(".explore-panel a");
